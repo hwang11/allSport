@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamSupport.allSport.Contest.ContestMapper">
+    <select id="findAllContest" resultType="com.teamSupport.allSport.Contest.Contest">
+        SELECT * FROM contest;
+    </select>
+    <select id="getUser" parameterType="String" resultType="com.teamSupport.allSport.Contest.Contest">
+        SELECT * FROM contest WHERE idContest = #{idContest}
+    </select>
+    <select id="selectCount" resultType="java.lang.Integer"> //다시와서 수정해보기 
+        SELECT COUNT(*) FROM contest;
+    </select>
+    <insert id="insertContest">
+        INSERT INTO contest VALUES (#{idContest}, #{num}, #{startDate}, 
+        #{endDate}, #{SOCName}, #{kind}, #{title}, #{context}, #{country}, #{target}
+        , #{place}, #{URL}, #{phone})
+    </insert>
+</mapper>
