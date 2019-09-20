@@ -14,4 +14,5 @@ interface ContestMapper {
     List<Contest> findAllContest();
     int selectCount();
     Contest getContest(int idContest);
+    void insert(Contest contest);
 }

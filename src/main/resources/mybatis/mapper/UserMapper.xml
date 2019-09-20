@@ -11,7 +11,7 @@
         SELECT * FROM user WHERE user_key = #{user_key}
     </select>
      <insert id="insertUser">
-        INSERT INTO user VALUES (#{user_key}, #{nickname})
+        INSERT INTO user VALUES (#{user_key}, #{user_nickname})
     </insert>
 </mapper>
 

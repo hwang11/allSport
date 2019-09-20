@@ -16,13 +16,13 @@ public class ContestController {
 	 @Autowired
 	 ContestMapper contestMapper;
 	 
-    @RequestMapping(path = "/contest", method = RequestMethod.GET)
+    @RequestMapping(path = "/contest", method = RequestMethod.GET) 
     public @ResponseBody List<Contest> show() {
         List<Contest> li = contestMapper.findAllContest();
         return li;
     }
     
-    @RequestMapping(path = "/getContest", method = RequestMethod.GET)
+    @RequestMapping(path = "/getContest", method = RequestMethod.GET) 
     public @ResponseBody Contest getContest(@RequestParam(value = "idContest") int idContest) {
         Contest contest = contestMapper.getContest(idContest);
         return contest;

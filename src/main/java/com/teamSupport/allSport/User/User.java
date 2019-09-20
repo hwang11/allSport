@@ -12,5 +12,5 @@ import org.springframework.data.annotation.Id;
 public class User {
     @Id
     String user_key;
-    String nickname;
+    String user_nickname;
 }
