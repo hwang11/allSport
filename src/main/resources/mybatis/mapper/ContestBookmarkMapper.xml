@@ -12,6 +12,9 @@
     <select id="findByIdContestBookmark" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.ContestBookmark.ContestBookmark">
         SELECT * FROM ContestBookmark WHERE idContestBookmark = #{idContestBookmark}
     </select>
+    <select id="countContestBookmark" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ContestBookmark
+    </select>
     <insert id="insertContestBookmark"> 
         INSERT INTO ContestBookmark VALUES (#{idContestBookmark}, #{user_key}, #{idContest})
     </insert>
