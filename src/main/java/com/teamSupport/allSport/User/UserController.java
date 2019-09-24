@@ -30,9 +30,9 @@ public class UserController {
 
     @RequestMapping(path = "/insertUser", method = RequestMethod.POST)
     public @ResponseBody User insertUser(@RequestParam(value = "user_key") String user_key,
-                                         @RequestParam(value = "nickname") String nickname) {
-        User user = new User(user_key, nickname);
-        userMapper.insertUser(user_key, nickname);
+                                         @RequestParam(value = "user_nickname") String user_nickname) {
+        User user = new User(user_key, user_nickname);
+        userMapper.insertUser(user_key, user_nickname);
         return user;
     }
     

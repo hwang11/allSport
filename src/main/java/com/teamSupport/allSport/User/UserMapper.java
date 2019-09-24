@@ -13,5 +13,5 @@ interface UserMapper {
 
 	User getUser(String user_key);
     List<User> findAllUsers();
-    void insertUser(@Param(value = "user_key") String user_key, @Param(value = "nickname") String nickname);
+    void insertUser(@Param(value = "user_key") String user_key, @Param(value = "user_nickname") String user_nickname);
 }
