@@ -35,11 +35,12 @@ public class ContestBookmarkController {
    }
    
    @RequestMapping(path = "/insertContestBookmark", method = RequestMethod.POST)
-   public @ResponseBody ContestBookmark insertContestBookmark(@RequestParam(value = "idContestBookmark") int idContestBookmark,
+   public @ResponseBody ContestBookmark insertContestBookmark(
                                         @RequestParam(value = "user_key") String user_key,
                                         @RequestParam(value= "idContest") int idContest) {
-       ContestBookmark contestBookmark = new ContestBookmark(idContestBookmark,user_key,idContest);
-       contestBookmarkMapper.insertContestBookmark(idContestBookmark,user_key,idContest);
+	   int count = contestBookmarkMapper.countContestBookmark();
+       ContestBookmark contestBookmark = new ContestBookmark(count+1,user_key,idContest);
+       contestBookmarkMapper.insertContestBookmark(count+1,user_key,idContest);
        return contestBookmark;
    }
    

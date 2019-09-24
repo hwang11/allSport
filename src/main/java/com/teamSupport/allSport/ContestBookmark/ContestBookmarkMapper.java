@@ -12,8 +12,8 @@ public interface ContestBookmarkMapper {
 	List<ContestBookmark> findAllContestBookmark();
 	ContestBookmark findByUserKey(String user_key);
 	ContestBookmark findByIdContestBookmark(int idContestBookmark);
-	void insertContestBookmark(
-			@Param(value = "idContestBookmark") int idContestBookmark, 
+	int countContestBookmark();
+	void insertContestBookmark(int idContestBookmark, 
 			@Param(value = "user_key") String user_key,
 			@Param(value = "idContest") int idContest);
 	void deleteContestBookmark(int idContestBookmark);
