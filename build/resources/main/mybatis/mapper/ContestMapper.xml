@@ -9,12 +9,7 @@
     <select id="getContest" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.Contest.Contest">
         SELECT * FROM contest WHERE idContest = #{idContest}
     </select>
-    <select id="selectCount" resultType="java.lang.Integer"> //다시와서 수정해보기 
+    <select id="selectCount" resultType="java.lang.Integer"> 
         SELECT COUNT(*) FROM contest;
     </select>
-    <insert id="insertContest" parameterType="com.teamSupport.allSport.Contest.Contest">
-        INSERT INTO contest VALUES (#{idContest}, #{contest_num}, #{contest_startDate}, 
-        #{endDate}, #{SOCName}, #{kind}, #{title}, #{context}, #{country}, #{target}
-        , #{place}, #{URL}, #{phone})
-    </insert> 
 </mapper>
