@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamSupport.allSport.Follow.FollowMapper">
+
+    <select id="getFollowing" resultType="com.teamSupport.allSport.Follow.Follow">
+        SELECT * FROM follow WHERE follower_nickname = #{follower_nickname}
+    </select>
+
+    <select id="getFollower" resultType="com.teamSupport.allSport.Follow.Follow">
+        SELECT * FROM follow WHERE following_nickname = #{following_nickname}
+    </select>
+
+    <insert id="addFollow">
+        INSERT INTO follow VALUES( #{following_nickname}, #{follower_nickname})
+    </insert>
+</mapper>
