@@ -44,4 +44,26 @@ dependencies {
     //poi
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
     
+    //websocket
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+	compile('org.springframework.boot:spring-boot-starter-websocket')
+	compile('org.webjars.bower:jquery:3.3.1')
+	compile('org.webjars:sockjs-client:1.1.2')
+	compile('org.webjars:webjars-locator:0.30')
+	compile('org.webjars:stomp-websocket:2.3.3')
+	
+	//security
+	//compile("org.springframework.boot:spring-boot-starter-security")
+	
+	//webjar
+	  compile 'org.webjars:jquery:3.2.1'
+	  compile 'org.webjars:jquery-ui:1.11.4'
+	  compile 'org.webjars:bootstrap:3.3.6'
+	  
+	//swagger
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
+
+	
+    
 }
