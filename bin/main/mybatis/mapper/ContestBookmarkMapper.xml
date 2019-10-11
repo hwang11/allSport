@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.teamSupport.allSport.ContestBookmark.ContestBookmarkMapper">
+    <select id="findAllContestBookmark" resultType="com.teamSupport.allSport.ContestBookmark.ContestBookmark">
+        SELECT * FROM ContestBookmark;
+    </select>
+    <select id="findByUserKey" parameterType="java.lang.String" resultType="com.teamSupport.allSport.ContestBookmark.ContestBookmark">
+        SELECT * FROM ContestBookmark WHERE user_key = #{user_key}
+    </select>
+    <select id="findByIdContestBookmark" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.ContestBookmark.ContestBookmark">
+        SELECT * FROM ContestBookmark WHERE idContestBookmark = #{idContestBookmark}
+    </select>
+    <select id="countContestBookmark" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM ContestBookmark
+    </select>
+    <insert id="insertContestBookmark"> 
+        INSERT INTO ContestBookmark VALUES (#{idContestBookmark}, #{user_key}, #{idContest})
+    </insert>
+    <delete id="deleteContestBookmark" parameterType="java.lang.Integer">
+    	DELETE FROM ContestBookmark WHERE idContestBookmark = #{idContestBookmark}
+    </delete>
+</mapper>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hello WebSocket</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/app.js"></script>
+</head>
+<body>
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable Javascript and reload this page!</h2></noscript>
+<div id="main-content" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="connect">WebSocket connection:</label>
+                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
+                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="name">What is your name?</label>
+                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
+                </div>
+                <button id="send" class="btn btn-default" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="conversation" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Greetings</th>
+                </tr>
+                </thead>
+                <tbody id="greetings">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </form>
+    <div class="row">
+        <div class="col-md-2">
+            <button id="connectToBidding" class="btn btn-default" type="submit">Connect To Bidding</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="login">Login:</label>
+                    <input id="login" type="text" class="form-control" placeholder="Login...">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" class="form-control" placeholder="Pass...">
+                </div>
+                <div class="form-group">
+                    <label for="rate">Rate:</label>
+                    <input id="rate" type="number" class="form-control">
+                </div>
+                <button id="send_rate" class="btn btn-default" type="submit">Send rate</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="bidding" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Biddings</th>
+                </tr>
+                </thead>
+                <tbody id="rates">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row"><h4>Private Websocket</h4></div>
+    <div class="row">
+        <div class="col-md-6">
+            <button id="connectToPrivate" class="btn btn-default" type="submit">Connect To Private Channel</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="pr_message">Private message:</label>
+                    <input id="pr_message" type="text" class="form-control" placeholder="Private message...">
+                </div>
+                <button id="send_pr_message" class="btn btn-default" type="submit">Send private message</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="pr_message_tab" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Private message</th>
+                </tr>
+                </thead>
+                <tbody id="pr_mes">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
