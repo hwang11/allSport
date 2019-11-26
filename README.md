@@ -1,21 +1,29 @@
-# allSport
-### 안드로이드 & ios 앱
-대한체육회 대회 정보를 확인하고 관람 모임을 구할 수 있는 앱입니다.   
-####1. 기술스택  
-* Main : Java, Spring-boot, React-native, MySQL  
-* Module : Apache POI, STOMP
+# 올스포츠
+안드로이드 & ios 앱
+대한체육회 대회 정보를 확인하고 관람 모임을 구할 수 있는 앱입니다.  
 
-####2. 기능  
-* 대한체육회 대회 정보 확인  
-* 대회 후기 작성  
-* 대회 관람 모임 조성  
-* 채팅  
+### Skill
+Client : JavaScript, React Native…
+Server : Java, SpringBoot, MySql, MyBatis, Stomp, POI, Swagger
 
-#### 어떻게 실행하나요 
+### Role
+황선아 : Server) ER Model Design, REST API Build, POI, Stomp
+최성정 : Client) AOS, IOS
+이정훈 : Server) REST API Build
+
+### Problem
+축구, 야구, 농구 외 비주류 운동의 경기 정보를 알기가 힘들다.
+종합 운동 경기 관련 정보를 제공하는 앱, 웹 서비스가 존재하지 않는다.
+비주류 운동의 경우 사람들의 관심이 적어 지원을 받지 못한다.
+
+### Solution
+체육대회 사이트에서 종합 운동 경기 정보를 제공하는 파일을 읽어와서, 앱을 통해 전체 운동 경기 정보를 제공한다.
+응원 모임을 위한 커뮤니티 서비스 제공을 통해, 사람들이 비주류 운동 경기에 관심갖게 한다.
+
+### Summary
+주류 운동 경기와, 비주류 운동 경기 정보를 전부 제공하는 올스포츠 앱 서비스를 통해 	응원 모임을 찾을 수 있는 커뮤니티 형성과 비주류 운동 경기 종목의 활성화라는 기대효과를 얻는다.
+
+### 어떻게 실행하나요 
 ~~~
 $gradle bootrun 
 ~~~
-#### 화면구성  
-#### 프로젝트 개요 
-#### 역할 
-#### 전체구성 
