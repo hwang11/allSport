@@ -9,7 +9,7 @@ Server : Java, SpringBoot, MySql, MyBatis, Stomp, POI, Swagger
 ### Role
 황선아 : Server) ER Model Design, REST API Build, POI, Stomp  
 최성정 : Client) AOS, IOS  
-이정훈 : Server) REST API Build
+이정훈 : Server) REST API Build  
 노재윤 : 디자인
 
 ### Problem
