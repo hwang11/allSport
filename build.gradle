@@ -1,12 +1,21 @@
+//allsport
 plugins {
     id 'org.springframework.boot' version '2.1.8.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'eclipse'
+}
+
+bootJar {
+    baseName = 'spring-boot-chatting'
+    version =  '0.1.0'
 }
 
 group = 'com.teamSupport'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 
 configurations {
     developmentOnly
@@ -51,19 +60,19 @@ dependencies {
 	compile('org.webjars:sockjs-client:1.1.2')
 	compile('org.webjars:webjars-locator:0.30')
 	compile('org.webjars:stomp-websocket:2.3.3')
-	
-	//security
-	//compile("org.springframework.boot:spring-boot-starter-security")
-	
+	compile("org.webjars:webjars-locator-core")
 	//webjar
 	  compile 'org.webjars:jquery:3.2.1'
 	  compile 'org.webjars:jquery-ui:1.11.4'
-	  compile 'org.webjars:bootstrap:3.3.6'
+	  compile 'org.webjars:bootstrap:3.3.7'
 	  
+	//security
+	//compile("org.springframework.boot:spring-boot-starter-security")
+
 	//swagger
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.5.0'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
 
-	
+    //classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
     
 }
