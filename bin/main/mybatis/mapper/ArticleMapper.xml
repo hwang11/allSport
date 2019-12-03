@@ -3,26 +3,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.Article.ArticleMapper">
+<mapper namespace="com.teamSupport.allSport.dao.ArticleMapper">
 
-    <select id="getArticle" resultType="com.teamSupport.allSport.Article.Article">
+    <select id="getArticle" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article
     </select>
 
-    <select id="findArticleByArticleId" parameterType="int" resultType="com.teamSupport.allSport.Article.Article">
+    <select id="findByIdArticle" parameterType="int" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article WHERE idArticle = #{idArticle}
     </select>
 
-    <select id="findArticleByContestId" parameterType="int" resultType="com.teamSupport.allSport.Article.Article">
+    <select id="findByIdContest" parameterType="int" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article WHERE idContest = #{idContest}
     </select>
 
-    <select id="findArticleByKind" parameterType="String" resultType="com.teamSupport.allSport.Article.Article">
+    <select id="findByKind" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article WHERE article_kind = #{article_kind}
     </select>
-
-    <insert id="uploadArticle">
-        INSERT INTO article VALUES(#{idArticle}, #{idContest}, #{article_date}, #{article_writer_nickname}, #{article_kind}, #{article_title}, #{article_contents})
+    
+	<select id="findByDate" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
+        SELECT * FROM article WHERE article_date = #{article_date}
+    </select>
+    
+    <select id="findByWriterNickname" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
+        SELECT * FROM article WHERE article_writer_nickname = #{article_writer_nickname}
+    </select>
+    
+    <select id="findByTitle" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
+        SELECT * FROM article WHERE article_title = #{article_title}
+    </select>
+    
+    <select id="getLast" resultType="java.lang.Integer">
+        SELECT MAX(idArticle) FROM article
+    </select>
+    
+    <insert id="insertArticle">
+        INSERT INTO article VALUES(#{idArticle}, #{article_kind}, #{article_title}, #{article_contents}, #{article_writer_nickname}, #{idContest}, #{article_date})
     </insert>
-
+    
+    <update id="updateIdContest">
+    	UPDATE article SET idContest = #{idContest} WHERE idArticle = #{idArticle}
+    </update>
+    
+    <update id="updateKind">
+    	UPDATE article SET article_kind = #{article_kind} WHERE idArticle = #{idArticle}
+    </update>
+    
+    <update id="updateTitle">
+    	UPDATE article SET article_title = #{article_title} WHERE idArticle = #{idArticle}
+    </update>
+    
+    <update id="updateContents">
+    	UPDATE article SET article_contents = #{article_contents} WHERE idArticle = #{idArticle}
+    </update>
+    
+	<delete id="deleteByIdArticle">
+    	DELETE FROM article WHERE idArticle = #{idArticle}
+    </delete>
+    
+    <delete id="deleteByIdContest">
+    	DELETE FROM article WHERE idContest = #{idContest}
+    </delete>
 </mapper>
