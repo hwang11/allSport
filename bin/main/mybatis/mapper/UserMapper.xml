@@ -3,15 +3,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.User.UserMapper">
-    <select id="findAllUsers" resultType="com.teamSupport.allSport.User.User">
+<mapper namespace="com.teamSupport.allSport.dao.UserMapper">
+    <select id="findAllUsers" resultType="com.teamSupport.allSport.dto.User">
         SELECT * FROM user;
     </select>
-    <select id="getUser" parameterType="String" resultType="com.teamSupport.allSport.User.User">
+    <select id="getUser" parameterType="String" resultType="com.teamSupport.allSport.dto.User">
         SELECT * FROM user WHERE user_key = #{user_key}
     </select>
-     <insert id="insertUser">
-        INSERT INTO user VALUES (#{user_key}, #{user_nickname})
+     <insert id="insertUser"> 
+        INSERT INTO user VALUES (#{user_key}, #{user_nickname}, #{status}, #{token}, #{registeredAt}, #{expiredAt})
     </insert>
+	<update id="leaveUser">
+    	UPDATE user SET user_status = #{status}, user_expiredAt = #{expiredAt} WHERE user_key = #{user_key}
+    </update>
 </mapper>
 

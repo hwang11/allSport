@@ -3,17 +3,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.Follow.FollowMapper">
+<mapper namespace="com.teamSupport.allSport.dao.FollowMapper">
 
-    <select id="getFollowing" resultType="com.teamSupport.allSport.Follow.Follow">
-        SELECT * FROM follow WHERE follower_nickname = #{follower_nickname}
+    <select id="getFollowing" resultType="java.lang.String">
+        SELECT following_nickname FROM follow WHERE follower_nickname = #{follower_nickname}
     </select>
 
-    <select id="getFollower" resultType="com.teamSupport.allSport.Follow.Follow">
-        SELECT * FROM follow WHERE following_nickname = #{following_nickname}
+    <select id="getFollower" resultType="java.lang.String">
+        SELECT follower_nickname FROM follow WHERE following_nickname = #{following_nickname}
+    </select>
+    
+    <select id="Follow" resultType="java.lang.String">
+        SELECT following_nickname FROM follow WHERE follower_nickname = #{follower_nickname} AND following_nickname = #{following_nickname}
     </select>
 
     <insert id="addFollow">
         INSERT INTO follow VALUES( #{following_nickname}, #{follower_nickname})
     </insert>
+    
+    <delete id="unfollowing">
+    	DELETE FROM follow WHERE follower_nickname = #{follower_nickname} AND following_nickname = #{following_nickname}
+    </delete>
 </mapper>

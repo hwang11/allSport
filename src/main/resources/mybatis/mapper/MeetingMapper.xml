@@ -3,22 +3,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.Meeting.MeetingMapper">
+<mapper namespace="com.teamSupport.allSport.dao.MeetingMapper">
 
-    <select id="getAllMeeting" resultType="com.teamSupport.allSport.Meeting.Meeting">
+    <select id="getAllMeeting" resultType="com.teamSupport.allSport.dto.Meeting">
         SELECT * FROM meeting
     </select>
 
-    <select id="findMeetingByGameId" parameterType="int" resultType="com.teamSupport.allSport.Meeting.Meeting">
+    <select id="findMeetingByContestId" parameterType="int" resultType="com.teamSupport.allSport.dto.Meeting">
         SELECT * FROM meeting WHERE idContest = #{idContest}
     </select>
 
-    <select id="findMeetingByMeetId" parameterType="int" resultType="com.teamSupport.allSport.Meeting.Meeting">
+    <select id="findMeetingByMeetId" parameterType="int" resultType="com.teamSupport.allSport.dto.Meeting">
         SELECT * FROM meeting WHERE idMeeting = #{idMeeting}
     </select>
 
     <insert id="makeMeeting">
-        INSERT INTO meeting VALUES(#{idMeeting}, #{idContest}, #{meet_name}, #{meet_nowcount}, #{meet_maxcount}, #{meet_location}, #{meet_contents})
+        INSERT INTO meeting VALUES(#{idMeeting}, #{meet_nowcount}, #{meet_maxcount}, #{meet_location}, #{meet_name}, #{meet_contents}, #{idContest})
     </insert>
+    
+    <select id="getLast" resultType="java.lang.Integer">
+        SELECT MAX(idMeeting) FROM Meeting
+    </select>
+    
+    <delete id="deleteMeeting" parameterType="java.lang.Integer">
+    	DELETE FROM Meeting WHERE idMeeting = #{idMeeting}
+    </delete>
+    
+    <delete id="deleteMeetingByIdContest" parameterType="java.lang.Integer">
+    	DELETE FROM Meeting WHERE idContest = #{idContest}
+    </delete>
 
 </mapper>
