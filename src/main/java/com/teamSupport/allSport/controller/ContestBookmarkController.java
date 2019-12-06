@@ -57,6 +57,7 @@ public class ContestBookmarkController {
 	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.DELETE) 
 	public @ResponseBody List<ContestBookmark> deleteByUserKey(@PathVariable String user_key) {
 		List list = contestBookmarkMapper.findByUserKey(user_key);
+		
 		contestBookmarkMapper.deleteByUserKey(user_key);
 		return list;
 	}

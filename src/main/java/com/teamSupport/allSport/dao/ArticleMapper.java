@@ -9,6 +9,7 @@ import java.util.List;
 public interface ArticleMapper {
 	int getLast();
     Article findByIdArticle(int idArticle);
+    List<Article> selectArticle(int pageStart, int perPageNum);
     List<Article> getArticle();
     List<Article> findByIdContest(int idContest);
     List<Article> findByKind(String article_kind);

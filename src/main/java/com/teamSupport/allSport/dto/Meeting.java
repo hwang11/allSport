@@ -17,11 +17,12 @@ import org.springframework.data.annotation.Id;
 public class Meeting {
     @Id
     private int idMeeting;
+    private String meet_date;
     private String meet_name;
-    private int meet_nowcount;
-    private int meet_maxcount;
     private String meet_location;
     private String meet_contents;
+    private int meet_nowcount;
+    private int meet_maxcount;
     @OneToOne 
 	@JoinColumn(name = "idContest")
 	private int idContest;
