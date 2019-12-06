@@ -16,7 +16,7 @@ public interface MeetingMapper {
     void makeMeeting(@Param(value = "idMeeting") int idMeeting, @Param(value = "idContest") int idContest,
                      @Param(value = "meet_name") String meet_name, @Param(value = "meet_nowcount") int meet_nowcount,
                      @Param(value = "meet_maxcount") int meet_maxcount, @Param(value = "meet_location") String location,
-                     @Param(value = "meet_contents") String meet_contents);
+                     @Param(value = "meet_contents") String meet_contents,  @Param(value = "meet_date") String meet_date);
     
 
 }

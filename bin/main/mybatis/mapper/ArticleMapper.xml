@@ -8,7 +8,11 @@
     <select id="getArticle" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article
     </select>
-
+	
+	<select id="selectArticle" resultType="com.teamSupport.allSport.dto.Article">
+		SELECT * FROM article ORDER BY idArticle DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
     <select id="findByIdArticle" parameterType="int" resultType="com.teamSupport.allSport.dto.Article">
         SELECT * FROM article WHERE idArticle = #{idArticle}
     </select>

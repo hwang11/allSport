@@ -18,7 +18,7 @@
     </select>
 
     <insert id="makeMeeting">
-        INSERT INTO meeting VALUES(#{idMeeting}, #{meet_nowcount}, #{meet_maxcount}, #{meet_location}, #{meet_name}, #{meet_contents}, #{idContest})
+        INSERT INTO meeting VALUES(#{idMeeting}, #{meet_nowcount}, #{meet_maxcount}, #{meet_location}, #{meet_name}, #{meet_contents}, #{idContest}, #{meet_date})
     </insert>
     
     <select id="getLast" resultType="java.lang.Integer">

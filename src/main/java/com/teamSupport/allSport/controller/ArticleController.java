@@ -18,11 +18,12 @@ import javax.persistence.OneToOne;
 public class ArticleController {
 	@Autowired
 	ArticleMapper articleMapper;
-
+	
+	//페이징 처리 필요 
 	@RequestMapping(path = "/article", method = RequestMethod.GET)
 	public @ResponseBody List<Article> getArticle() {
 		List<Article> posts = articleMapper.getArticle();
-
+		
 		return posts;
 	}
 
@@ -84,12 +85,16 @@ public class ArticleController {
 
 	@RequestMapping(path = "/article/search", method = RequestMethod.POST)
 	public @ResponseBody List<Article> search(
+			@RequestParam(value = "idContest", defaultValue = "0") int idContest,
 			@RequestParam(value = "article_date", defaultValue = "aa") String article_date,
 			@RequestParam(value = "article_writer_nickname", defaultValue = "aa") String article_writer_nickname,
 			@RequestParam(value = "article_kind", defaultValue = "aa") String article_kind,
 			@RequestParam(value = "article_title", defaultValue = "aa") String article_title) {
 		List<Article> li;
-		if (!article_date.equals("aa")) {
+		if(idContest != 0) {
+			li = articleMapper.findByIdContest(idContest);
+		}
+		else if (!article_date.equals("aa")) {
 			li = articleMapper.findByDate(article_date);
 		} else if (!article_writer_nickname.equals("aa")) {
 			li = articleMapper.findByWriterNickname(article_writer_nickname);

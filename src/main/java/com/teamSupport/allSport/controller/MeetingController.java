@@ -12,6 +12,7 @@ import com.teamSupport.allSport.dao.MeetingMapper;
 import com.teamSupport.allSport.dto.ChatRoom;
 import com.teamSupport.allSport.dto.Meeting;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.JoinColumn;
@@ -42,15 +43,22 @@ public class MeetingController {
 
 		return meeting;
 	}
+	private int idMeeting;
+    private String meet_date;
+    private String meet_name;
+    private String meet_location;
+    private String meet_contents;
+    private int meet_nowcount;
+    private int meet_maxcount;
 	
 	@RequestMapping(path = "/meeting", method = RequestMethod.POST)
 	public @ResponseBody Meeting insertMeeting(int idContest, String meet_name, int meet_nowcount,
-			int meet_maxcount, String meet_location, String meet_contents) {
+			int meet_maxcount, String meet_location, String meet_contents, String meet_date) {
 		int idMeeting = meetingMapper.getLast();
 		meetingMapper.makeMeeting(idMeeting+1, idContest, meet_name, meet_nowcount, meet_maxcount, meet_location,
-				meet_contents);
-		Meeting meeting = new Meeting(idMeeting+1, meet_name, meet_nowcount, meet_maxcount, meet_location,
-				meet_contents, idContest);
+				meet_contents,meet_date);
+		Meeting meeting = new Meeting(idMeeting+1, meet_date, meet_name, meet_location, meet_contents, meet_nowcount, meet_maxcount,
+				 idContest);
 		return meeting;
 	}
 
