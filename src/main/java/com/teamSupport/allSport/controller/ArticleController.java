@@ -21,7 +21,7 @@ public class ArticleController {
 	
 	//페이징 처리 필요 
 	@RequestMapping(path = "/article", method = RequestMethod.GET)
-	public @ResponseBody List<Article> getArticle(int page) {
+	public @ResponseBody List<Article> getArticle() {
 		List<Article> posts = articleMapper.getArticle();
 		
 		return posts;
