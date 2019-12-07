@@ -1,5 +1,5 @@
 /.gradle/
 /build/
-*.properties
+application.properties
 
 
