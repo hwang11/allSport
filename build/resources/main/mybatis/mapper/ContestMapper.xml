@@ -2,12 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.Contest.ContestMapper">
-    <select id="findAllContest" resultType="com.teamSupport.allSport.Contest.Contest">
+<mapper namespace="com.teamSupport.allSport.dao.ContestMapper">
+    <select id="findAllContest" resultType="com.teamSupport.allSport.dto.Contest">
         SELECT * FROM contest;
     </select>
-    <select id="getContest" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.Contest.Contest">
+    <select id="getContest" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.Contest">
         SELECT * FROM contest WHERE idContest = #{idContest}
+    </select>
+    <select id="findByDate" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_startDate >= #{startDate} AND #{endDate} >= contest_endDate
+    </select>
+    <select id="findByKind" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_kind = #{kind}
+    </select>
+    <select id="findByTarget" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_target = #{target}
+    </select>
+    <select id="findByPlace" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_place = #{place}
+    </select>
+    <select id="findByTitle" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_title = #{title}
+    </select>
+    <select id="findByCountry" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_place = #{country}
+    </select>
+    <select id="findBySOC" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
+        SELECT * FROM contest WHERE contest_SOCName = #{SOCName}
     </select>
     <select id="selectCount" resultType="java.lang.Integer"> 
         SELECT COUNT(*) FROM contest;
