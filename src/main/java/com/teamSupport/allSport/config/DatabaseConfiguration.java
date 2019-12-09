@@ -5,12 +5,19 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.teamSupport.allSport.GlobalPropertySource;
+
 import javax.sql.DataSource;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+
 
 @Configuration
 @MapperScan(basePackages = "com.teamSupport.allSport")
@@ -18,13 +25,29 @@ import javax.sql.DataSource;
 public class DatabaseConfiguration {
     @Autowired
     private ApplicationContext applicationContext;
-
+    
+    @Autowired
+    GlobalPropertySource globalPropertySource;
+    
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/mapper/*.xml"));
-        return sqlSessionFactoryBean.getObject();
+    @Primary
+    public DataSource customDataSource() {
+    	return DataSourceBuilder
+    			.create()
+    			.url(globalPropertySource.getUrl())
+    			.driverClassName(globalPropertySource.getDriverClassName())
+    			.username(globalPropertySource.getUsername())
+    			.password(globalPropertySource.getPassword())
+    			.build();
+    }
+    
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource customDataSource) throws Exception {
+        final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
+        sessionFactory.setDataSource(customDataSource);
+        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        sessionFactory.setMapperLocations(resolver.getResources("classpath:mybatis/mapper/*.xml"));
+        return sessionFactory.getObject();
     }
 
     @Bean
