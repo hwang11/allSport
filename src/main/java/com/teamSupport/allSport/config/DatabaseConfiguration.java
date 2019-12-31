@@ -20,7 +20,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 
 
 @Configuration
-@MapperScan(basePackages = "com.teamSupport.allSport")
+@MapperScan(basePackages = "com.teamSupport.allSport.dao") //dao아래 있는 interface를 mapper로 인식 
 @EnableTransactionManagement
 public class DatabaseConfiguration {
     @Autowired

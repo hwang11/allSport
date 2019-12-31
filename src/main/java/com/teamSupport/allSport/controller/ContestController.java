@@ -3,6 +3,7 @@ package com.teamSupport.allSport.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,54 +13,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teamSupport.allSport.dao.ContestMapper;
 import com.teamSupport.allSport.dto.Contest;
+import com.teamSupport.allSport.dto.ResponseMessage;
+import com.teamSupport.allSport.service.ContestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-public class ContestController {
+public class ContestController extends AbstractBaseRestController{
 	@Autowired
-	ContestMapper contestMapper;
+	ContestService contestService;
 
 	@RequestMapping(path = "/contest", method = RequestMethod.GET)
-	public @ResponseBody List<Contest> show() {
-		List<Contest> li = contestMapper.findAllContest();
-		return li;
+	public @ResponseBody ResponseMessage show(int page) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestService.findAllContest(page));
+	    return message;
 	}
 
 	@RequestMapping(path = "/contest/{idContest}", method = RequestMethod.GET)
-	public @ResponseBody Contest getContest(@PathVariable int idContest) {
-		Contest contest = contestMapper.getContest(idContest);
-		return contest;
+	public @ResponseBody ResponseMessage getContest(@PathVariable int idContest) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestService.getContest(idContest));
+	    return message;
 	}
 
 	@RequestMapping(path = "/contest/search", method = RequestMethod.POST)
-	public @ResponseBody List<Contest> search(
-			@RequestParam(value = "contest_startDate", defaultValue = "aa") String contest_startDate,
-			@RequestParam(value = "contest_endDate", defaultValue = "aa") String contest_endDate,
-			@RequestParam(value = "contest_kind", defaultValue = "aa") String contest_kind,
-			@RequestParam(value = "contest_target", defaultValue = "aa") String contest_target,
-			@RequestParam(value = "contest_place", defaultValue = "aa") String contest_place,
-			@RequestParam(value = "contest_title", defaultValue = "aa") String contest_title,
-			@RequestParam(value = "contest_country", defaultValue = "aa") String contest_country,
-			@RequestParam(value = "contest_SOCName", defaultValue = "aa") String contest_SOCName) {
-		List<Contest> li;
-		if (contest_startDate != null)
-			li = contestMapper.findByDate(contest_startDate,contest_endDate);
-		else if (!contest_kind.equals("aa")) {
-			li = contestMapper.findByKind(contest_kind);
-		} else if (!contest_target.equals("aa")) {
-			li = contestMapper.findByTarget(contest_target);
-		} else if (!contest_place.equals("aa")) {
-			li = contestMapper.findByPlace(contest_place);
-		} else if (!contest_title.equals("aa")) {
-			li = contestMapper.findByTitle(contest_title);
-		} else if (!contest_country.equals("aa")) {
-			li = contestMapper.findByCountry(contest_country);
-		} else {
-			li = contestMapper.findBySOC(contest_SOCName);
-		}
+	public @ResponseBody ResponseMessage search(int page,
+			@RequestParam(value = "startDate", defaultValue = "aa") String startDate,
+			@RequestParam(value = "endDate", defaultValue = "aa") String endDate,
+			@RequestParam(value = "kind", defaultValue = "aa") String kind,
+			@RequestParam(value = "target", defaultValue = "aa") String target,
+			@RequestParam(value = "place", defaultValue = "aa") String place,
+			@RequestParam(value = "title", defaultValue = "aa") String title,
+			@RequestParam(value = "country", defaultValue = "aa") String country,
+			@RequestParam(value = "SOCName", defaultValue = "aa") String SOCName) {
 
-		return li;
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestService.search(page, startDate, endDate, kind, target, place, title, country, SOCName));
+	    return message;
 	}
 
 }

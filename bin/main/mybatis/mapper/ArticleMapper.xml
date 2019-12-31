@@ -5,67 +5,98 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.ArticleMapper">
 
-    <select id="getArticle" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article
-    </select>
-	
-	<select id="selectArticle" resultType="com.teamSupport.allSport.dto.Article">
-		SELECT * FROM article ORDER BY idArticle DESC LIMIT #{pageStart}, #{perPageNum}
+	<select id="article" parameterType="int"
+		resultType="com.teamSupport.allSport.dto.Article">
+		SELECT * FROM article WHERE idArticle = #{idArticle}
 	</select>
-	
-    <select id="findByIdArticle" parameterType="int" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE idArticle = #{idArticle}
-    </select>
 
-    <select id="findByIdContest" parameterType="int" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE idContest = #{idContest}
-    </select>
+	<select id="findByIdArticle" parameterType="int"
+		resultType="com.teamSupport.allSport.dto.Article">
+		SELECT * FROM article WHERE idArticle = #{idArticle}
+	</select>
 
-    <select id="findByKind" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE article_kind = #{article_kind}
-    </select>
-    
-	<select id="findByDate" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE article_date = #{article_date}
-    </select>
-    
-    <select id="findByWriterNickname" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE article_writer_nickname = #{article_writer_nickname}
-    </select>
-    
-    <select id="findByTitle" parameterType="String" resultType="com.teamSupport.allSport.dto.Article">
-        SELECT * FROM article WHERE article_title = #{article_title}
-    </select>
-    
-    <select id="getLast" resultType="java.lang.Integer">
-        SELECT MAX(idArticle) FROM article
-    </select>
-    
-    <insert id="insertArticle">
-        INSERT INTO article VALUES(#{idArticle}, #{article_kind}, #{article_title}, #{article_contents}, #{article_writer_nickname}, #{idContest}, #{article_date})
-    </insert>
-    
-    <update id="updateIdContest">
-    	UPDATE article SET idContest = #{idContest} WHERE idArticle = #{idArticle}
-    </update>
-    
-    <update id="updateKind">
-    	UPDATE article SET article_kind = #{article_kind} WHERE idArticle = #{idArticle}
-    </update>
-    
-    <update id="updateTitle">
-    	UPDATE article SET article_title = #{article_title} WHERE idArticle = #{idArticle}
-    </update>
-    
-    <update id="updateContents">
-    	UPDATE article SET article_contents = #{article_contents} WHERE idArticle = #{idArticle}
-    </update>
-    
+	<select id="getLast" resultType="java.lang.Integer">
+		SELECT MAX(idArticle) FROM
+		article
+	</select>
+
+	<select id="getAllArticle"
+		resultType="com.teamSupport.allSport.dto.Article">
+		SELECT * FROM article ORDER BY idArticle DESC LIMIT
+		#{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="articleSearch"
+		resultType="com.teamSupport.allSport.dto.Article">
+		SELECT * FROM article WHERE
+		<choose>
+			<when test="!date.equals('aa')">
+				article_date = #{date}
+			</when>
+			<when test="!writer_nickname.equals('aa')">
+				article_writer_nickname = #{writer_nickname}
+			</when>
+			<when test="!kind.equals('aa')">
+				article_kind = #{kind}
+			</when>
+			<when test="!title.equals('aa')">
+				article_title = #{title}
+			</when>
+			<otherwise>
+				idContest = #{idContest}
+			</otherwise>
+		</choose>
+		ORDER BY idArticle DESC LIMIT #{pageStart}, #{perPageNum}
+	</select>
+
+	<select id="getCountByOption" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM article WHERE 
+		<choose>
+			<when test="!date.equals('aa')">
+				article_date = #{date}
+			</when>
+			<when test="!writer_nickname.equals('aa')">
+				article_writer_nickname =
+				#{writer_nickname}
+			</when>
+			<when test="!kind.equals('aa')">
+				article_kind = #{kind}
+			</when>
+			<otherwise>
+				idContest = #{idContest}
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insertArticle">
+		INSERT INTO article VALUES(#{idArticle},
+		#{kind}, #{title},
+		#{contents},
+		#{writer_nickname}, #{idContest},
+		#{date})
+	</insert>
+
+	<update id="updateArticle">
+		UPDATE article SET
+		<choose>
+			<when test="idContest!=0">
+				idContest = #{idContest}
+			</when>
+			<when test="!contents.equals('aa')">
+				article_contents = #{contents}
+			</when>
+			<when test="!kind.equals('aa')">
+				article_kind = #{kind}
+			</when>
+			<otherwise>
+				article_title = #{title}
+			</otherwise>
+		</choose>
+		WHERE idArticle = #{idArticle}
+	</update>
+
 	<delete id="deleteByIdArticle">
-    	DELETE FROM article WHERE idArticle = #{idArticle}
-    </delete>
-    
-    <delete id="deleteByIdContest">
-    	DELETE FROM article WHERE idContest = #{idContest}
-    </delete>
+		DELETE FROM article WHERE idArticle = #{idArticle}
+	</delete>
 </mapper>

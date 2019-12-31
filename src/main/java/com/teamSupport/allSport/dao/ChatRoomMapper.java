@@ -13,9 +13,8 @@ import com.teamSupport.allSport.dto.MeetBookmark;
 @Repository
 public interface ChatRoomMapper {
 	int getLast();
-	List<ChatRoom> findAllRoomByUserKey(String user_key);
-	ChatRoom findRoomById(@Param(value = "roomId") int roomId);
-	void deleteChatRoom(@Param(value = "roomId") int roomId);
-	void insertChatRoom(@Param(value = "roomId") int roomId, @Param(value = "name") String name,
-			@Param(value = "user_key") String user_key);
+	List<ChatRoom> findAllRoomByUserKey(String user_key, int page, int pageStart, int perPageNum);
+	ChatRoom findRoomById(int roomId);
+	void deleteChatRoom(int roomId);
+	void insertChatRoom( int roomId, String name, String user_key);
 }

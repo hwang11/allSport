@@ -6,19 +6,19 @@
 <mapper namespace="com.teamSupport.allSport.dao.PhotoMapper">
 
     <select id="findPhotoByIdArticle" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.Photo">
-        SELECT * FROM Photo WHERE idArticle = #{idArticle}
+        SELECT * FROM photo WHERE idArticle = #{idArticle}
     </select>
 
     <select id="findPhotoByIdPhoto" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.Photo">
-        SELECT * FROM Photo WHERE idPhoto = #{idPhoto}
+        SELECT * FROM photo WHERE idPhoto = #{idPhoto}
     </select>
 
 	<select id="getLast" resultType="java.lang.Integer">
-		SELECT MAX(idPhoto) FROM Photo;
+		SELECT MAX(idPhoto) FROM photo;
 	</select>
 	
     <insert id="insertPhoto">
-        INSERT INTO Photo VALUES(#{idPhoto},#{photo_path},#{photo_name},#{photo_type},#{photo_size},#{idArticle})
+        INSERT INTO photo VALUES(#{idPhoto},#{photo_path},#{photo_name},#{photo_type},#{photo_size},#{idArticle})
     </insert>
     
     <delete id="deleteByIdPhoto" parameterType="java.lang.Integer">

@@ -1,123 +1,78 @@
 package com.teamSupport.allSport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.teamSupport.allSport.dao.ArticleMapper;
 import com.teamSupport.allSport.dto.Article;
+import com.teamSupport.allSport.dto.Criteria;
+import com.teamSupport.allSport.dto.PageMaker;
+import com.teamSupport.allSport.dto.PagingResult;
+import com.teamSupport.allSport.dto.ResponseMessage;
+import com.teamSupport.allSport.service.ArticleService;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.List;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-@RestController
-public class ArticleController {
+@Controller
+@RequestMapping(path = "/article")
+public class ArticleController extends AbstractBaseRestController{
 	@Autowired
-	ArticleMapper articleMapper;
+	ArticleService articleService;
 	
-	//페이징 처리 필요 
-	@RequestMapping(path = "/article", method = RequestMethod.GET)
-	public @ResponseBody List<Article> getArticle() {
-		List<Article> posts = articleMapper.getArticle();
-		
-		return posts;
+	@RequestMapping(method = RequestMethod.GET) //ok
+	public @ResponseBody ResponseMessage getArticle(int page) {
+		 ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	     message.add("result", articleService.getAllArticle(page));
+	     return message;
 	}
 
-	@RequestMapping(path = "/article/{idArticle}", method = RequestMethod.GET)
-	public @ResponseBody Article findArticleByIdArticle(@PathVariable int idArticle) {
-		Article article = articleMapper.findByIdArticle(idArticle);
-
-		return article;
+	@RequestMapping(path = "/{idArticle}", method = RequestMethod.GET) //ok
+	public @ResponseBody ResponseMessage findArticleByIdArticle(@PathVariable int idArticle) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", articleService.getArticle(idArticle));
+		return message;
 	}
 
-	@RequestMapping(path = "/contest/{idContest}/article", method = RequestMethod.GET)
-	public @ResponseBody List<Article> findArticleByIdContest(@PathVariable int idContest) {
-		List<Article> articles = articleMapper.findByIdContest(idContest);
-
-		return articles;
+	@RequestMapping(method = RequestMethod.POST) ///ok
+	public @ResponseBody ResponseMessage insertArticle(int idContest, String writer_nickname, 
+			String kind, String title, String contents) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", articleService.insertArticle(idContest, writer_nickname, kind, 
+				title, contents));
+		return message;
 	}
 
-	@RequestMapping(path = "/article", method = RequestMethod.POST)
-	public @ResponseBody Article insertArticle(@RequestParam(value = "idContest") int idContest,
-			@RequestParam(value = "article_writer_nickname") String article_writer_nickname,
-			@RequestParam(value = "article_kind") String article_kind,
-			@RequestParam(value = "article_title") String article_title,
-			@RequestParam(value = "article_contents") String article_contents) {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String article_date = format1.format(System.currentTimeMillis());
-		int idArticle = articleMapper.getLast();
-		articleMapper.insertArticle(idArticle + 1, idContest, article_date, article_writer_nickname, article_kind,
-				article_title, article_contents);
-		Article article = new Article(idArticle + 1, article_title, article_date, article_writer_nickname, article_kind,
-				idContest, article_contents);
-		return article;
-	}
-
-	@RequestMapping(path = "/article/{idArticle}", method = RequestMethod.PATCH)
-	public @ResponseBody Article updateArticle(@PathVariable int idArticle,
+	@RequestMapping(path = "/{idArticle}", method = RequestMethod.PATCH) //ok 
+	public @ResponseBody ResponseMessage updateArticle(
+			@PathVariable int idArticle,
 			@RequestParam(value = "idContest", defaultValue = "0") int idContest,
-			@RequestParam(value = "article_kind", defaultValue = "aa") String article_kind,
-			@RequestParam(value = "article_title", defaultValue = "aa") String article_title,
-			@RequestParam(value = "article_contents", defaultValue = "aa") String article_contents) {
-		Article article = articleMapper.findByIdArticle(idArticle);
-		if (idContest != 0) {
-			articleMapper.updateIdContest(idContest, idArticle);
-			article.setIdContest(idContest);
-		}
-		if (!article_kind.equals("aa")) {
-			articleMapper.updateKind(article_kind, idArticle);
-			article.setArticle_kind(article_kind);
-		}
-		if (!article_title.equals("aa")) {
-			articleMapper.updateTitle(article_title, idArticle);
-			article.setArticle_title(article_title);
-		}
-		if (!article_contents.equals("aa")) {
-			articleMapper.updateContents(article_contents, idArticle);
-			article.setArticle_contents(article_contents);
-		}
-		return article;
+			@RequestParam(value = "kind", defaultValue = "aa") String kind,
+			@RequestParam(value = "title", defaultValue = "aa") String title,
+			@RequestParam(value = "contents", defaultValue = "aa") String contents) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", articleService.updateArticle(idArticle, idContest, kind, 
+				title, contents));
+		return message;
 	}
-
-	@RequestMapping(path = "/article/search", method = RequestMethod.POST)
-	public @ResponseBody List<Article> search(
+	
+	@RequestMapping(path = "/search", method = RequestMethod.POST) //ok
+	public @ResponseBody ResponseMessage search(int page,
 			@RequestParam(value = "idContest", defaultValue = "0") int idContest,
-			@RequestParam(value = "article_date", defaultValue = "aa") String article_date,
-			@RequestParam(value = "article_writer_nickname", defaultValue = "aa") String article_writer_nickname,
-			@RequestParam(value = "article_kind", defaultValue = "aa") String article_kind,
-			@RequestParam(value = "article_title", defaultValue = "aa") String article_title) {
-		List<Article> li;
-		if(idContest != 0) {
-			li = articleMapper.findByIdContest(idContest);
-		}
-		else if (!article_date.equals("aa")) {
-			li = articleMapper.findByDate(article_date);
-		} else if (!article_writer_nickname.equals("aa")) {
-			li = articleMapper.findByWriterNickname(article_writer_nickname);
-		} else if (!article_kind.equals("aa")) {
-			li = articleMapper.findByKind(article_kind);
-		} else {
-			li = articleMapper.findByTitle(article_title);
-		}
-
-		return li;
+			@RequestParam(value = "date", defaultValue = "aa") String date,
+			@RequestParam(value = "writer_nickname", defaultValue = "aa") String writer_nickname,
+			@RequestParam(value = "kind", defaultValue = "aa") String kind,
+			@RequestParam(value = "title", defaultValue = "aa") String title) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", articleService.articleSearch(page, idContest, date, writer_nickname, kind,
+				title));
+		return message;
 	}
-
-	@RequestMapping(path = "/article/{idArticle}", method = RequestMethod.DELETE)
-	public @ResponseBody Article deleteByIdArticle(@PathVariable int idArticle) {
-		Article article = articleMapper.findByIdArticle(idArticle);
-		articleMapper.deleteByIdArticle(idArticle);
-		return article;
-	}
-
-	@RequestMapping(path = "/contest/{idContest}/article", method = RequestMethod.DELETE)
-	public @ResponseBody List<Article> deleteByIdContest(@PathVariable int idContest) {
-		List list = articleMapper.findByIdContest(idContest);
-		articleMapper.deleteByIdContest(idContest);
-		return list;
+	
+	@RequestMapping(path = "/{idArticle}", method = RequestMethod.DELETE) //ok
+	public @ResponseBody ResponseMessage deleteArticle(@PathVariable int idArticle) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", articleService.deleteArticle(idArticle));
+		return message;
 	}
 }

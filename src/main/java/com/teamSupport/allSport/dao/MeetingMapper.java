@@ -8,15 +8,14 @@ import java.util.List;
 
 public interface MeetingMapper {
 	int getLast();
-    List<Meeting> getAllMeeting();
-    List<Meeting> findMeetingByContestId(int idContest);
+	int getCountByOption(int idContest, String meet_name, String meet_location, String meet_date);
+    List<Meeting> getAllMeeting(int pageStart, int perPageNum);
+    List<Meeting> findMeetingByOption(int idContest, String meet_name, String meet_location, String meet_date, int pageStart, int perPageNum);
     Meeting findMeetingByMeetId(int idMeeting);
     void deleteMeeting(int idMeeting);
     void deleteMeetingByIdContest(int idContest);
-    void makeMeeting(@Param(value = "idMeeting") int idMeeting, @Param(value = "idContest") int idContest,
-                     @Param(value = "meet_name") String meet_name, @Param(value = "meet_nowcount") int meet_nowcount,
-                     @Param(value = "meet_maxcount") int meet_maxcount, @Param(value = "meet_location") String location,
-                     @Param(value = "meet_contents") String meet_contents,  @Param(value = "meet_date") String meet_date);
+    void insertMeeting(int idMeeting, int idContest, String meet_name, int meet_nowcount,int meet_maxcount, 
+    		String meet_location, String meet_contents, String meet_date);
     
 
 }

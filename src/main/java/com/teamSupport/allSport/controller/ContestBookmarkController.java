@@ -3,6 +3,7 @@ package com.teamSupport.allSport.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,56 +11,52 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamSupport.allSport.dao.ContestBookmarkMapper;
-import com.teamSupport.allSport.dao.ContestMapper;
 import com.teamSupport.allSport.dto.ContestBookmark;
 import com.teamSupport.allSport.dto.Meeting;
+import com.teamSupport.allSport.dto.ResponseMessage;
+import com.teamSupport.allSport.service.ContestBookmarkService;
+import com.teamSupport.allSport.service.ContestService;
 
 @RestController
-public class ContestBookmarkController {
+public class ContestBookmarkController extends AbstractBaseRestController{
 	@Autowired
-	ContestBookmarkMapper contestBookmarkMapper;
+	ContestBookmarkService contestBookmarkService;
 
-	@RequestMapping(path = "/contest-bookmark", method = RequestMethod.GET) 
-	public @ResponseBody List<ContestBookmark> show() {
-		List<ContestBookmark> li = contestBookmarkMapper.findAllContestBookmark();
-		return li;
-	}
-
-	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.GET)
-	public @ResponseBody List<ContestBookmark> getContestByUserkey(@PathVariable String user_key) {
-		List<ContestBookmark> li  = contestBookmarkMapper.findByUserKey(user_key);
-		return li;
+	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.GET) //ok
+	public @ResponseBody ResponseMessage getContestByUserkey(@PathVariable String user_key, int page) {
+		 ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	     message.add("result", contestBookmarkService.findByUserKey(user_key, page));
+	     return message;
 	}
 	
-	@RequestMapping(path = "/contest-bookmark/{idContestBookmark}", method = RequestMethod.GET) 
-	public @ResponseBody ContestBookmark getContestById(@PathVariable int idContestBookmark) {
-		ContestBookmark contestBookmark = contestBookmarkMapper.findByIdContestBookmark(idContestBookmark);
-		return contestBookmark;
-	}
-
-	@RequestMapping(path = "/contest-bookmark", method = RequestMethod.POST) 
-	public @ResponseBody ContestBookmark insertContestBookmark(@RequestParam(value = "user_key") String user_key,
-			@RequestParam(value = "idContest") int idContest) {
-		int bookmarkId = contestBookmarkMapper.getLast();
-		ContestBookmark contestBookmark = new ContestBookmark(bookmarkId + 1, user_key, idContest);
-		contestBookmarkMapper.insertContestBookmark(bookmarkId + 1, user_key, idContest);
-		return contestBookmark;
-	}
-
-	@RequestMapping(path = "/contest-bookmark/{idContestBookmark}", method = RequestMethod.DELETE) 
-	public @ResponseBody ContestBookmark deleteContestBookmark(@PathVariable int idContestBookmark) {
-		ContestBookmark bookmark = contestBookmarkMapper.findByIdContestBookmark(idContestBookmark);
-		contestBookmarkMapper.deleteContestBookmark(idContestBookmark);
-		return bookmark;
-	}
-	
-	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.DELETE) 
-	public @ResponseBody List<ContestBookmark> deleteByUserKey(@PathVariable String user_key) {
-		List list = contestBookmarkMapper.findByUserKey(user_key);
+	@RequestMapping(path = "/contest-bookmark/{idContestBookmark}", method = RequestMethod.GET) //ok
+	public @ResponseBody ResponseMessage getContestById(@PathVariable int idContestBookmark) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestBookmarkService.findByIdContestBookmark(idContestBookmark));
+	    return message;
 		
-		contestBookmarkMapper.deleteByUserKey(user_key);
-		return list;
+	}
+
+	@RequestMapping(path = "/contest-bookmark", method = RequestMethod.POST) //ok
+	public @ResponseBody ResponseMessage insertContestBookmark(@RequestParam(value = "user_key") String user_key,
+			@RequestParam(value = "idContest") int idContest) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestBookmarkService.insertContestBookmark(user_key, idContest));
+	    return message;
+	}
+
+	@RequestMapping(path = "/contest-bookmark/{idContestBookmark}", method = RequestMethod.DELETE) //ok
+	public @ResponseBody ResponseMessage deleteContestBookmark(@PathVariable int idContestBookmark) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestBookmarkService.deleteContestBookmark(idContestBookmark));
+	    return message;
+	}
+	
+	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.DELETE) //ok
+	public @ResponseBody ResponseMessage deleteByUserKey(@PathVariable String user_key) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+	    message.add("result", contestBookmarkService.deleteByUserKey(user_key));
+		return message;
 	}
 
 }

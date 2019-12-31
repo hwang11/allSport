@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public
 interface UserMapper {
-
+	int getLast();
 	User getUser(String user_key);
-    List<User> findAllUsers();
+    List<User> findAllUsers(int pageStart, int perPageNum);
     void leaveUser(String user_key, String expiredAt, String status);
     void insertUser(@Param(value = "user_key") String user_key, 
     		@Param(value = "user_nickname") String user_nickname,

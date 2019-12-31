@@ -4,24 +4,25 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.ContestBookmarkMapper">
     <select id="findAllContestBookmark" resultType="com.teamSupport.allSport.dto.ContestBookmark">
-        SELECT * FROM ContestBookmark;
+        SELECT * FROM contest_bookmark;
     </select>
     <select id="findByUserKey" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.ContestBookmark">
-        SELECT * FROM ContestBookmark WHERE user_key = #{user_key}
+        SELECT * FROM contest_bookmark WHERE user_key = #{user_key} ORDER BY idContestBookmark
+        <if test="perPageNum gt 0">DESC LIMIT #{pageStart}, #{perPageNum}</if>
     </select>
     <select id="findByIdContestBookmark" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.ContestBookmark">
-        SELECT * FROM ContestBookmark WHERE idContestBookmark = #{idContestBookmark}
+        SELECT * FROM contest_bookmark WHERE idContestBookmark = #{idContestBookmark}
     </select>
     <select id="getLast" resultType="java.lang.Integer">
-        SELECT MAX(idContestBookmark) FROM ContestBookmark
+        SELECT MAX(idContestBookmark) FROM contest_bookmark
     </select>
     <insert id="insertContestBookmark"> 
-        INSERT INTO ContestBookmark VALUES (#{idContestBookmark}, #{user_key}, #{idContest})
+        INSERT INTO contest_bookmark VALUES (#{idContestBookmark}, #{user_key}, #{idContest})
     </insert>
     <delete id="deleteContestBookmark" parameterType="java.lang.Integer">
-    	DELETE FROM ContestBookmark WHERE idContestBookmark = #{idContestBookmark}
+    	DELETE FROM contest_bookmark WHERE idContestBookmark = #{idContestBookmark}
     </delete>
     <delete id="deleteByUserKey" parameterType="java.lang.String">
-    	DELETE FROM ContestBookmark WHERE user_key = #{user_key}
+    	DELETE FROM contest_bookmark WHERE user_key = #{user_key}
     </delete>
 </mapper>

@@ -23,7 +23,7 @@ import com.teamSupport.allSport.dto.ChatMessage;
 import com.teamSupport.allSport.dto.User;
 
 @Controller
-public class ChatMessageController { // publisher 구현
+public class ChatMessageController extends AbstractBaseRestController{ // publisher 구현
 	@Autowired
 	ChatMessageMapper chatMessageMapper;
 

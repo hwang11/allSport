@@ -4,24 +4,26 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.MeetBookmarkMapper">
     <select id="findAllMeetBookmark" resultType="com.teamSupport.allSport.dto.MeetBookmark">
-        SELECT * FROM MeetBookmark;
+        SELECT * FROM meet_bookmark;
     </select>
-    <select id="findByUserKey" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.MeetBookmark">
-        SELECT * FROM MeetBookmark WHERE user_key = #{user_key}
+    <select id="findByUserKey" resultType="com.teamSupport.allSport.dto.MeetBookmark">
+        SELECT * FROM meet_bookmark WHERE user_key = #{user_key} ORDER BY idMeetBookmark DESC LIMIT
+		#{pageStart}, #{perPageNum}
+        
     </select>
     <select id="findByIdMeetBookmark" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.MeetBookmark">
-        SELECT * FROM MeetBookmark WHERE idMeetBookmark = #{idMeetBookmark}
+        SELECT * FROM meet_bookmark WHERE idMeetBookmark = #{idMeetBookmark}
     </select>
     <select id="getLast" resultType="java.lang.Integer">
-        SELECT MAX(idMeetBookmark) FROM MeetBookmark
+        SELECT MAX(idMeetBookmark) FROM meet_bookmark
     </select>
     <insert id="insertMeetBookmark"> 
-        INSERT INTO MeetBookmark VALUES (#{idMeetBookmark}, #{user_key}, #{idMeeting})
+        INSERT INTO meet_bookmark VALUES (#{idMeetBookmark}, #{user_key}, #{idMeeting})
     </insert>
     <delete id="deleteMeetBookmark" parameterType="java.lang.Integer">
-    	DELETE FROM MeetBookmark WHERE idMeetBookmark = #{idMeetBookmark}
+    	DELETE FROM meet_bookmark WHERE idMeetBookmark = #{idMeetBookmark}
     </delete>
     <delete id="deleteByUserKey" parameterType="java.lang.String">
-    	DELETE FROM MeetBookmark WHERE user_key = #{user_key}
+    	DELETE FROM meet_bookmark WHERE user_key = #{user_key}
     </delete>
 </mapper>

@@ -3,34 +3,73 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.teamSupport.allSport.dao.ContestMapper">
-    <select id="findAllContest" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest;
-    </select>
-    <select id="getContest" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE idContest = #{idContest}
-    </select>
-    <select id="findByDate" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_startDate >= #{startDate} AND #{endDate} >= contest_endDate
-    </select>
-    <select id="findByKind" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_kind = #{kind}
-    </select>
-    <select id="findByTarget" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_target = #{target}
-    </select>
-    <select id="findByPlace" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_place = #{place}
-    </select>
-    <select id="findByTitle" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_title = #{title}
-    </select>
-    <select id="findByCountry" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_place = #{country}
-    </select>
-    <select id="findBySOC" parameterType="java.lang.String" resultType="com.teamSupport.allSport.dto.Contest">
-        SELECT * FROM contest WHERE contest_SOCName = #{SOCName}
-    </select>
-    <select id="selectCount" resultType="java.lang.Integer"> 
-        SELECT COUNT(*) FROM contest;
-    </select>
+	<select id="findAllContest"
+		resultType="com.teamSupport.allSport.dto.Contest">
+		SELECT * FROM contest;
+	</select>
+	<select id="getContest" parameterType="java.lang.Integer"
+		resultType="com.teamSupport.allSport.dto.Contest">
+		SELECT * FROM contest WHERE idContest = #{idContest}
+	</select>
+	<select id="findByOption" parameterType="java.lang.String"
+		resultType="com.teamSupport.allSport.dto.Contest">
+		SELECT * FROM contest WHERE
+		<choose>
+			<when test="!startDate.equals('aa')">
+				contest_startDate >= #{startDate} AND #{endDate} >=
+				contest_endDate
+			</when>
+			<when test="!kind.equals('aa')">
+				contest_kind = #{kind}
+			</when>
+			<when test="!target.equals('aa')">
+				contest_target = #{target}
+			</when>
+			<when test="!place.eauals('aa')">
+				contest_place = #{place}
+			</when>
+			<when test="!title.equals('aa')">
+				contest_title = #{title}
+			</when>
+			<when test="!country.equals('aa')">
+				contest_country = #{country}
+			</when>
+			<otherwise>
+				contest_SOCName = #{SOCName}
+			</otherwise>
+		</choose>
+		ORDER BY idContest
+		<if test="perPageNum gt 0">DESC LIMIT #{pageStart}, #{perPageNum}</if>	
+	</select>
+	<select id="getLast" resultType="java.lang.Integer">
+		SELECT MAX(idContest) FROM contest;
+	</select>
+	<select id="getCountByOption" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM contest WHERE
+		<choose>
+			<when test="!startDate.equals('aa')">
+				contest_startDate >= #{startDate} AND #{endDate} >=
+				contest_endDate
+			</when>
+			<when test="!kind.equals('aa')">
+				contest_kind = #{kind}
+			</when>
+			<when test="!target.equals('aa')">
+				contest_target = #{target}
+			</when>
+			<when test="!place.eauals('aa')">
+				contest_place = #{place}
+			</when>
+			<when test="!title.equals('aa')">
+				contest_title = #{title}
+			</when>
+			<when test="!country.equals('aa')">
+				contest_country = #{country}
+			</when>
+			<otherwise>
+				contest_SOCName = #{SOCName}
+			</otherwise>
+		</choose>	
+	</select>
 </mapper>

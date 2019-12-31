@@ -4,18 +4,19 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.ChatRoomMapper">
     <select id="findAllRoomByUserKey" resultType="com.teamSupport.allSport.dto.ChatRoom">
-        SELECT * FROM ChatRoom;
+        SELECT * FROM chat_room WHERE user_key = #{user_key} 
+        ORDER BY idArticle DESC LIMIT #{pageStart}, #{perPageNum};
     </select>
     <select id="findRoomById" parameterType="java.lang.Integer" resultType="com.teamSupport.allSport.dto.ChatRoom">
-        SELECT * FROM ChatRoom WHERE idChatRoom = #{roomId}
+        SELECT * FROM chat_room WHERE idChatRoom = #{roomId}
     </select>
     <insert id="insertChatRoom"> 
-        INSERT INTO ChatRoom VALUES (#{idChatRoom}, #{name}, #{user_key})
+        INSERT INTO chat_room VALUES (#{idChatRoom}, #{name}, #{user_key})
     </insert>
     <delete id="deleteChatRoom" parameterType="java.lang.Integer">
-    	DELETE FROM ChatRoom WHERE idChatRoom = #{roomId}
+    	DELETE FROM chat_room WHERE idChatRoom = #{roomId}
     </delete>
     <select id="getLast" resultType="java.lang.Integer">
-        SELECT MAX(idChatRoom) FROM ChatRoom
+        SELECT MAX(idChatRoom) FROM chat_room
     </select>
 </mapper>

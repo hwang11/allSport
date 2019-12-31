@@ -11,6 +11,4 @@ public interface FollowMapper {
     		@Param(value = "follower_nickname") String follower_nickname);
     public void addFollow(@Param(value = "following_nickname") String following_nickname, 
     		@Param(value = "follower_nickname") String follower_nickname);
-    public String Follow(@Param(value = "following_nickname") String following_nickname, 
-    		@Param(value = "follower_nickname") String follower_nickname);
 }

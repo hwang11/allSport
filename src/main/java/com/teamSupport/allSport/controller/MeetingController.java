@@ -2,15 +2,19 @@ package com.teamSupport.allSport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teamSupport.allSport.dao.MeetingMapper;
 import com.teamSupport.allSport.dto.ChatRoom;
 import com.teamSupport.allSport.dto.Meeting;
+import com.teamSupport.allSport.dto.ResponseMessage;
+import com.teamSupport.allSport.service.MeetingService;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -19,60 +23,57 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @RestController
-public class MeetingController {
+public class MeetingController extends AbstractBaseRestController{
 	@Autowired
-	MeetingMapper meetingMapper;
+	MeetingService meetingService;
 
 	@RequestMapping(path = "/meeting", method = RequestMethod.GET)
-	public @ResponseBody List<Meeting> getMeetings() {
-		List<Meeting> meetingList = meetingMapper.getAllMeeting();
-
-		return meetingList;
-	}
-
-	@RequestMapping(path = "/contest/{idContest}/meeting", method = RequestMethod.GET)
-	public @ResponseBody List<Meeting> findMeetingByContestId(@PathVariable int idContest) {
-		List<Meeting> meetingList = meetingMapper.findMeetingByContestId(idContest);
-
-		return meetingList;
+	public @ResponseBody ResponseMessage getMeetings(int page) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.getAllMeeting(page));
+		return message;
 	}
 	
 	@RequestMapping(path = "/meeting/{idMeeting}", method = RequestMethod.GET)
-	public @ResponseBody Meeting findMeetingByMeetId(@PathVariable int idMeeting) {
-		Meeting meeting = meetingMapper.findMeetingByMeetId(idMeeting);
-
-		return meeting;
+	public @ResponseBody ResponseMessage findMeetingByMeetId(@PathVariable int idMeeting) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.findMeetingByMeetId(idMeeting));
+		return message;
 	}
-	private int idMeeting;
-    private String meet_date;
-    private String meet_name;
-    private String meet_location;
-    private String meet_contents;
-    private int meet_nowcount;
-    private int meet_maxcount;
 	
 	@RequestMapping(path = "/meeting", method = RequestMethod.POST)
-	public @ResponseBody Meeting insertMeeting(int idContest, String meet_name, int meet_nowcount,
+	public @ResponseBody ResponseMessage insertMeeting(int idContest, String meet_name, 
 			int meet_maxcount, String meet_location, String meet_contents, String meet_date) {
-		int idMeeting = meetingMapper.getLast();
-		meetingMapper.makeMeeting(idMeeting+1, idContest, meet_name, meet_nowcount, meet_maxcount, meet_location,
-				meet_contents,meet_date);
-		Meeting meeting = new Meeting(idMeeting+1, meet_date, meet_name, meet_location, meet_contents, meet_nowcount, meet_maxcount,
-				 idContest);
-		return meeting;
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.makeMeeting(idContest, meet_name, 0, 
+				meet_maxcount, meet_location, meet_contents, meet_date));
+		return message;
+	}
+	
+
+	@RequestMapping(path = "/meeting/search", method = RequestMethod.POST)
+	public @ResponseBody ResponseMessage searchMeeting(int page, 
+			@RequestParam(value = "idContest", defaultValue = "0") int idContest, 
+			@RequestParam(value = "meet_name", defaultValue = "aa") String meet_name,
+			@RequestParam(value = "meet_location", defaultValue = "aa") String meet_location,
+			@RequestParam(value = "meet_date", defaultValue = "aa") String meet_date) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.findMeetingByOption(page, idContest, meet_name, meet_location,meet_date));
+		return message;
 	}
 
+
 	@RequestMapping(path = "/meeting/{idMeeting}", method = RequestMethod.DELETE) 
-	public @ResponseBody Meeting deleteMeetingByIdMeeting(@PathVariable int idMeeting) {
-		Meeting meeting = meetingMapper.findMeetingByMeetId(idMeeting);
-		meetingMapper.deleteMeeting(idMeeting);
-		return meeting;
+	public @ResponseBody ResponseMessage deleteMeetingByIdMeeting(@PathVariable int idMeeting) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.deleteMeeting(idMeeting));
+		return message;
 	}
 	
 	@RequestMapping(path = "/contest/{idContest}/meeting", method = RequestMethod.DELETE) 
-	public @ResponseBody List<Meeting> deleteMeetingByIdContest(@PathVariable int idContest) {
-		List list = meetingMapper.findMeetingByContestId(idContest);
-		meetingMapper.deleteMeetingByIdContest(idContest);
-		return list;
+	public @ResponseBody ResponseMessage deleteMeetingByIdContest(@PathVariable int idContest) {
+		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
+		message.add("result", meetingService.deleteMeetingByIdContest(idContest));
+		return message;
 	}
 }

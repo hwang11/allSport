@@ -5,13 +5,16 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.UserMapper">
     <select id="findAllUsers" resultType="com.teamSupport.allSport.dto.User">
-        SELECT * FROM user;
+        SELECT * FROM user ORDER BY user_registeredAt DESC LIMIT #{pageStart}, #{perPageNum}
     </select>
     <select id="getUser" parameterType="String" resultType="com.teamSupport.allSport.dto.User">
         SELECT * FROM user WHERE user_key = #{user_key}
     </select>
+    <select id="getLast" resultType="java.lang.Integer">
+		SELECT count(user_key) FROM user
+	</select>
      <insert id="insertUser"> 
-        INSERT INTO user VALUES (#{user_key}, #{user_nickname}, #{status}, #{token}, #{registeredAt}, #{expiredAt})
+        INSERT INTO user VALUES (#{user_key}, #{user_nickname}, #{status}, #{token},#{expiredAt}, #{registeredAt})
     </insert>
 	<update id="leaveUser">
     	UPDATE user SET user_status = #{status}, user_expiredAt = #{expiredAt} WHERE user_key = #{user_key}
