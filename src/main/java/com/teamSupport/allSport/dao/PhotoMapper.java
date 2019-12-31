@@ -11,11 +11,10 @@ import com.teamSupport.allSport.dto.Photo;
 @Repository
 public interface PhotoMapper {
 	int getLast();
-	List<Photo> findPhotoByIdArticle(@Param(value = "idArticle") int idArticle);
-	Photo findPhotoByIdPhoto(@Param(value = "idPhoto") int idPhoto);
-	void deleteByIdArticle(@Param(value = "idArticle") int idArticle);
-	void deleteByIdPhoto(@Param(value = "idPhoto") int idPhoto);
-	void insertPhoto(@Param(value = "idPhoto") int idPhoto,@Param(value = "photo_path") String photo_path,
-			@Param(value = "photo_name") String photo_name, @Param(value = "photo_type") String photo_type,
-			@Param(value = "photo_size") String photo_size, @Param(value = "idArticle") int idArticle);
+	List<Photo> findPhotoByIdArticle(int idArticle);
+	Photo findPhotoByIdPhoto(int idPhoto);
+	void deleteByIdArticle(int idArticle);
+	void deleteByIdPhoto(int idPhoto);
+	void insertPhoto(int idPhoto,String photo_path,
+			String photo_name, String photo_type, String photo_size, int idArticle);
 }

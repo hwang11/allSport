@@ -7,6 +7,6 @@
 	INSERT INTO ChatMessage VALUES (#{idChatMessage}, #{type} , #{writer}, #{message},  #{idChatRoom})
     </insert>
     <select id="getLast" resultType="java.lang.Integer"> 
-        SELECT MAX(idChatMessage) FROM ChatMessage;
+        SELECT MAX(idChatMessage) FROM chat_message;
     </select>
 </mapper>

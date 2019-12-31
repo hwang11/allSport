@@ -12,12 +12,10 @@ import com.teamSupport.allSport.dto.MeetBookmark;
 @Repository
 public interface MeetBookmarkMapper {
 	List<MeetBookmark> findAllMeetBookmark();
-	List<MeetBookmark> findByUserKey(String user_key);
+	List<MeetBookmark> findByUserKey(String user_key, int pageStart, int perPageNum);
 	MeetBookmark findByIdMeetBookmark(int idMeetBookmark);
 	int getLast();
-	void insertMeetBookmark(int idMeetBookmark,
-			@Param(value = "user_key") String user_key,
-			@Param(value = "idMeeting") int idMeeting);
+	void insertMeetBookmark(int idMeetBookmark, String user_key, int idMeeting);
 	void deleteMeetBookmark(int idMeetBookmark);
 	void deleteByUserKey(String user_key);
 }

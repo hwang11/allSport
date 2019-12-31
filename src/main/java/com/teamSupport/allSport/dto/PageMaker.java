@@ -13,12 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PageMaker {
 	private Criteria cri;
+	private int totalPage;
     private int totalCount;
     private int startPage;
     private int endPage;
     private boolean prev;
     private boolean next;
-    private int displayPageNum = 5;
+    private int displayPageNum = 5; //화면에 보여질 페이지 번호의 개수 
     
     public Criteria getCri() {
         return cri;
@@ -47,9 +48,44 @@ public class PageMaker {
         }
  
         prev = startPage == 1 ? false : true;
-        next = endPage * cri.getPerPageNum() < totalCount ? true : false;
+        next = endPage * cri.getPerPageNum() < totalCount ? true : false;        
+        totalPage = totalCount%cri.getPerPageNum() == 0 ? totalCount/cri.getPerPageNum() : totalCount/cri.getPerPageNum() + 1;
         
     }
+    
+    
+    public int getStartPage() {
+        return startPage;
+    }
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
+    public int getEndPage() {
+        return endPage;
+    }
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
+    }
+    public boolean isPrev() {
+        return prev;
+    }
+    public void setPrev(boolean prev) {
+        this.prev = prev;
+    }
+    public boolean isNext() {
+        return next;
+    }
+    public void setNext(boolean next) {
+        this.next = next;
+    }
+    public int getDisplayPageNum() {
+        return displayPageNum;
+    }
+    public void setDisplayPageNum(int displayPageNum) {
+        this.displayPageNum = displayPageNum;
+    }
+
+
     
 
 }

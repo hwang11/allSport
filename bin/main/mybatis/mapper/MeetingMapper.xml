@@ -5,32 +5,72 @@
 
 <mapper namespace="com.teamSupport.allSport.dao.MeetingMapper">
 
-    <select id="getAllMeeting" resultType="com.teamSupport.allSport.dto.Meeting">
-        SELECT * FROM meeting
-    </select>
+	<select id="getAllMeeting"
+		resultType="com.teamSupport.allSport.dto.Meeting">
+		SELECT * FROM meeting
+	</select>
 
-    <select id="findMeetingByContestId" parameterType="int" resultType="com.teamSupport.allSport.dto.Meeting">
-        SELECT * FROM meeting WHERE idContest = #{idContest}
-    </select>
+	<select id="findMeetingByOption" 
+		resultType="com.teamSupport.allSport.dto.Meeting">
+		SELECT * FROM meeting WHERE
+		<choose>
+			<when test="idContest gt 0">
+				idContest = #{idContest}
+			</when>
+			<when test="!meet_name.equals('aa')">
+				meet_name = #{meet_name}
+			</when>
+			<when test="!meet_date.equals('aa')">
+				meet_date = #{meet_date}
+			</when>
+			<otherwise>
+				meet_location = #{meet_location}
+			</otherwise>
+		</choose>
+		<if test="perPageNum gt 0"> ORDER BY idMeeting DESC LIMIT #{pageStart}, #{perPageNum}</if>
+	</select>
 
-    <select id="findMeetingByMeetId" parameterType="int" resultType="com.teamSupport.allSport.dto.Meeting">
-        SELECT * FROM meeting WHERE idMeeting = #{idMeeting}
-    </select>
+	<select id="findMeetingByMeetId" parameterType="int"
+		resultType="com.teamSupport.allSport.dto.Meeting">
+		SELECT * FROM meeting WHERE idMeeting = #{idMeeting}
+	</select>
 
-    <insert id="makeMeeting">
-        INSERT INTO meeting VALUES(#{idMeeting}, #{meet_nowcount}, #{meet_maxcount}, #{meet_location}, #{meet_name}, #{meet_contents}, #{idContest}, #{meet_date})
-    </insert>
-    
-    <select id="getLast" resultType="java.lang.Integer">
-        SELECT MAX(idMeeting) FROM Meeting
-    </select>
-    
-    <delete id="deleteMeeting" parameterType="java.lang.Integer">
-    	DELETE FROM Meeting WHERE idMeeting = #{idMeeting}
-    </delete>
-    
-    <delete id="deleteMeetingByIdContest" parameterType="java.lang.Integer">
-    	DELETE FROM Meeting WHERE idContest = #{idContest}
-    </delete>
+	<insert id="insertMeeting">
+		INSERT INTO meeting VALUES(#{idMeeting}, #{meet_nowcount}, #{meet_maxcount},
+		#{meet_location}, #{meet_name}, #{meet_contents}, #{idContest},
+		#{meet_date})
+	</insert>
+
+	<select id="getLast" resultType="java.lang.Integer">
+		SELECT MAX(idMeeting) FROM meeting
+	</select>
+
+	<delete id="deleteMeeting" parameterType="java.lang.Integer">
+		DELETE FROM meeting WHERE idMeeting = #{idMeeting}
+	</delete>
+
+	<delete id="deleteMeetingByIdContest"
+		parameterType="java.lang.Integer">
+		DELETE FROM meeting WHERE idContest = #{idContest}
+	</delete>
+
+	<select id="getCountByOption" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM meeting WHERE
+		<choose>
+			<when test="idContest gt 0">
+				idContest = #{idContest}
+			</when>
+			<when test="!meet_name.equals('aa')">
+				meet_name = #{meet_name}
+			</when>
+			<when test="!meet_date.equals('aa')">
+				meet_date = #{meet_date}
+			</when>
+			<otherwise>
+				meet_location = #{meet_location}
+			</otherwise>
+		</choose>
+	</select>
 
 </mapper>

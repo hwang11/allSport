@@ -1,29 +1,31 @@
 package com.teamSupport.allSport.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.teamSupport.allSport.dto.Article;
 
 import java.util.List;
 
+@Mapper
+@Repository
 public interface ArticleMapper {
-	int getLast();
+	public Article article(int idArticle);
+	public int getLast();
+	int getCountByOption(int idContest, String date, String writer_nickname,
+			String kind, String title);
     Article findByIdArticle(int idArticle);
-    List<Article> selectArticle(int pageStart, int perPageNum);
-    List<Article> getArticle();
-    List<Article> findByIdContest(int idContest);
-    List<Article> findByKind(String article_kind);
-    List<Article> findByDate(String article_date);
-    List<Article> findByWriterNickname(String article_writer_nickname);
-    List<Article> findByTitle(String article_title);
-    void updateIdContest(int idContest, int idArticle);
-    void updateKind(String article_kind, int idArticle);
-    void updateTitle(String article_title, int idArticle);
-    void updateContents(String article_contents, int idArticle);
+    List<Article> getAllArticle(int page, int pageStart, int perPageNum);
+    List<Article> articleSearch(int page,int idContest, String date, String writer_nickname,
+			String kind, String title, int pageStart, int perPageNum);
+    void updateArticle(int idArticle,int idContest, String kind, String title, String contents);
     void deleteByIdArticle(int idArticle);
     void deleteByIdContest(int idContest);
     void insertArticle(@Param(value = "idArticle") int idArticle, @Param(value = "idContest") int idContest,
-                       @Param(value = "article_date") String article_date,
-                       @Param(value = "article_writer_nickname") String article_writer_nickname, @Param(value = "article_kind") String article_kind,
-                       @Param(value = "article_title") String article_title, @Param(value = "article_contents") String article_contents);
+                       @Param(value = "date") String date,
+                       @Param(value = "writer_nickname") String writer_nickname, @Param(value = "kind") String kind,
+                       @Param(value = "title") String title, @Param(value = "contents") String contents);
 }
