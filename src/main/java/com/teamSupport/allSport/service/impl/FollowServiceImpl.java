@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamSupport.allSport.dao.FollowMapper;
 import com.teamSupport.allSport.dto.Follow;
+import com.teamSupport.allSport.service.FollowService;
 
 @Service
 public class FollowServiceImpl implements FollowService{

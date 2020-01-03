@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -11,12 +11,12 @@ import com.teamSupport.allSport.dto.Meeting;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
 import com.teamSupport.allSport.dto.User;
+import com.teamSupport.allSport.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService{
 	@Autowired
 	UserMapper userMapper;
-	
 	@Override
 	public User getUser(String user_key){
 		return userMapper.getUser(user_key);
@@ -45,11 +45,11 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-    public User insertUser(String user_key, String user_nickname,String token){
+    public User insertUser(String user_key, String user_nickname){
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String registeredAt = format1.format(System.currentTimeMillis());
-		User user = new User(user_key,user_nickname,"JOIN", token,registeredAt, null);
-		userMapper.insertUser(user_key, user_nickname, "JOIN", token, null, registeredAt);
+		User user = new User(user_key,user_nickname,"JOIN", registeredAt, null);
+		userMapper.insertUser(user_key, user_nickname, "JOIN", null, registeredAt);
 		return user;
 				
 	}

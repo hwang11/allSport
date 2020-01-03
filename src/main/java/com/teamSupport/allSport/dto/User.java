@@ -14,7 +14,6 @@ public class User {
     private String user_key;
     private String user_nickname;
     private String user_status;
-    private String user_token;
     private String user_registeredAt;
     private String user_expiredAt;
     

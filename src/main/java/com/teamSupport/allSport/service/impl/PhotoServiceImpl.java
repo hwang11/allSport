@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.teamSupport.allSport.dao.PhotoMapper;
 import com.teamSupport.allSport.dto.Photo;
+import com.teamSupport.allSport.service.PhotoService;
 
 @Service
 public class PhotoServiceImpl implements PhotoService{

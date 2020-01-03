@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.teamSupport.allSport.dto.Contest;
 import com.teamSupport.allSport.dto.Criteria;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
+import com.teamSupport.allSport.service.ContestService;
 
 @Service
 public class ContestServiceImpl implements ContestService{
