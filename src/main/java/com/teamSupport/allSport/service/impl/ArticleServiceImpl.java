@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -14,6 +14,7 @@ import com.teamSupport.allSport.dto.Article;
 import com.teamSupport.allSport.dto.Criteria;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
+import com.teamSupport.allSport.service.ArticleService;
 
 @Service("ArticleService")
 public class ArticleServiceImpl implements ArticleService {

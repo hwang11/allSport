@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import com.teamSupport.allSport.dao.MeetingMapper;
 import com.teamSupport.allSport.dto.Meeting;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
+import com.teamSupport.allSport.service.MeetingService;
 
 @Service
 public class MeetingServiceImpl implements MeetingService {

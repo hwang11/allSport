@@ -52,6 +52,8 @@ dependencies {
     
     //poi
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
+  	//json
+  	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
     
     //websocket
     compile('org.springframework.boot:spring-boot-starter-mustache')

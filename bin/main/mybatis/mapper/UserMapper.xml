@@ -14,10 +14,13 @@
 		SELECT count(user_key) FROM user
 	</select>
      <insert id="insertUser"> 
-        INSERT INTO user VALUES (#{user_key}, #{user_nickname}, #{status}, #{token},#{expiredAt}, #{registeredAt})
+        INSERT INTO user VALUES (#{user_key}, #{user_nickname}, #{status} ,#{expiredAt}, #{registeredAt})
     </insert>
 	<update id="leaveUser">
     	UPDATE user SET user_status = #{status}, user_expiredAt = #{expiredAt} WHERE user_key = #{user_key}
     </update>
+<!--     <update id="updateUser">
+    	UPDATE user SET user_token = #{token} WHERE user_key = #{user_key}
+    </update> -->
 </mapper>
 

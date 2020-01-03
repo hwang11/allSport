@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.service;
+package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import com.teamSupport.allSport.dto.ChatRoom;
 import com.teamSupport.allSport.dto.Criteria;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
+import com.teamSupport.allSport.service.ChatRoomService;
 
 @Service("ChatRoomService")
 public class ChatRoomServiceImpl implements ChatRoomService{
