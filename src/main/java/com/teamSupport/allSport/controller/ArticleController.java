@@ -21,7 +21,7 @@ public class ArticleController extends AbstractBaseRestController{
 	ArticleService articleService;
 	
 	@RequestMapping(method = RequestMethod.GET) //ok
-	public @ResponseBody ResponseMessage getArticle(int page) {
+	public @ResponseBody ResponseMessage getArticle(@RequestParam(value = "page", defaultValue = "0") int page)  {
 		 ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	     message.add("result", articleService.getAllArticle(page));
 	     return message;

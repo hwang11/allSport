@@ -10,8 +10,6 @@ import java.net.URL;
 import java.util.HashMap;
 
 import org.apache.tomcat.util.json.JSONParser;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonElement;
