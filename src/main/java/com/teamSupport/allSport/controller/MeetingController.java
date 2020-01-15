@@ -28,7 +28,7 @@ public class MeetingController extends AbstractBaseRestController{
 	MeetingService meetingService;
 
 	@RequestMapping(path = "/meeting", method = RequestMethod.GET)
-	public @ResponseBody ResponseMessage getMeetings(int page) {
+	public @ResponseBody ResponseMessage getMeetings(@RequestParam(value = "page", defaultValue = "1") int page) {
 		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 		message.add("result", meetingService.getAllMeeting(page));
 		return message;
@@ -52,7 +52,7 @@ public class MeetingController extends AbstractBaseRestController{
 	
 
 	@RequestMapping(path = "/meeting/search", method = RequestMethod.POST)
-	public @ResponseBody ResponseMessage searchMeeting(int page, 
+	public @ResponseBody ResponseMessage searchMeeting(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "idContest", defaultValue = "0") int idContest, 
 			@RequestParam(value = "meet_name", defaultValue = "aa") String meet_name,
 			@RequestParam(value = "meet_location", defaultValue = "aa") String meet_location,

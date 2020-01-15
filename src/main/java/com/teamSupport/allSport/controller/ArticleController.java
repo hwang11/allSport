@@ -21,7 +21,7 @@ public class ArticleController extends AbstractBaseRestController{
 	ArticleService articleService;
 	
 	@RequestMapping(method = RequestMethod.GET) //ok
-	public @ResponseBody ResponseMessage getArticle(@RequestParam(value = "page", defaultValue = "0") int page)  {
+	public @ResponseBody ResponseMessage getArticle(@RequestParam(value = "page", defaultValue = "1") int page)  {
 		 ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	     message.add("result", articleService.getAllArticle(page));
 	     return message;
@@ -57,7 +57,7 @@ public class ArticleController extends AbstractBaseRestController{
 	}
 	
 	@RequestMapping(path = "/search", method = RequestMethod.POST) //ok
-	public @ResponseBody ResponseMessage search(int page,
+	public @ResponseBody ResponseMessage search(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "idContest", defaultValue = "0") int idContest,
 			@RequestParam(value = "date", defaultValue = "aa") String date,
 			@RequestParam(value = "writer_nickname", defaultValue = "aa") String writer_nickname,

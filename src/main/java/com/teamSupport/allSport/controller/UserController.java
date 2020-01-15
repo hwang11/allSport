@@ -31,7 +31,7 @@ public class UserController extends AbstractBaseRestController{
 	UserMapper userMapper;
 
 	@RequestMapping(path = "/user", method = RequestMethod.GET) 
-	public @ResponseBody ResponseMessage getUsers(int page) {
+	public @ResponseBody ResponseMessage getUsers(@RequestParam(value = "page", defaultValue = "1") int page) {
 		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 		message.add("result", userService.findAllUsers(page));
 		return message;

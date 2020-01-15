@@ -24,7 +24,7 @@ public class ContestController extends AbstractBaseRestController{
 	ContestService contestService;
 
 	@RequestMapping(path = "/contest", method = RequestMethod.GET)
-	public @ResponseBody ResponseMessage show(int page) {
+	public @ResponseBody ResponseMessage show(@RequestParam(value = "page", defaultValue = "1") int page) {
 		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	    message.add("result", contestService.findAllContest(page));
 	    return message;
@@ -38,7 +38,7 @@ public class ContestController extends AbstractBaseRestController{
 	}
 
 	@RequestMapping(path = "/contest/search", method = RequestMethod.POST)
-	public @ResponseBody ResponseMessage search(int page,
+	public @ResponseBody ResponseMessage search(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "startDate", defaultValue = "aa") String startDate,
 			@RequestParam(value = "endDate", defaultValue = "aa") String endDate,
 			@RequestParam(value = "kind", defaultValue = "aa") String kind,

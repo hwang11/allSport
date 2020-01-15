@@ -23,7 +23,7 @@ public class ContestBookmarkController extends AbstractBaseRestController{
 	ContestBookmarkService contestBookmarkService;
 
 	@RequestMapping(path = "/user/{user_key}/contest-bookmark", method = RequestMethod.GET) //ok
-	public @ResponseBody ResponseMessage getContestByUserkey(@PathVariable String user_key, int page) {
+	public @ResponseBody ResponseMessage getContestByUserkey(@PathVariable String user_key, @RequestParam(value = "page", defaultValue = "1") int page) {
 		 ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	     message.add("result", contestBookmarkService.findByUserKey(user_key, page));
 	     return message;

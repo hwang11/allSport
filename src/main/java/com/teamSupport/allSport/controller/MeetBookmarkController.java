@@ -21,7 +21,7 @@ public class MeetBookmarkController extends AbstractBaseRestController{
 	MeetBookmarkService meetBookmarkService;
 	
    @RequestMapping(path = "/user/{user_key}/meeting-bookmark", method = RequestMethod.GET) 
-   public @ResponseBody ResponseMessage getMeetByUserkey(int page, @PathVariable String user_key) {
+   public @ResponseBody ResponseMessage getMeetByUserkey(@RequestParam(value = "page", defaultValue = "1")int page, @PathVariable String user_key) {
 	   ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	   message.add("result", meetBookmarkService.findByUserKey(page, user_key));
 	   return message;
