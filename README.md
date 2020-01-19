@@ -25,11 +25,6 @@ Server : Java, SpringBoot, MySql, MyBatis, Stomp, POI, Swagger
 주류 운동 경기와, 비주류 운동 경기 정보를 전부 제공하는 올스포츠 앱 서비스를 통해  
 응원 모임을 찾을 수 있는 커뮤니티 형성과 비주류 운동 경기 종목의 활성화라는 기대효과를 얻는다.
 
-### 실행방법
-~~~
-$gradle bootrun 
-~~~
-
 ### 실행화면
 <div>
   <img width="200" src="https://user-images.githubusercontent.com/37287788/69611185-97f4b600-1070-11ea-9a68-7d419fcf9076.jpg">
