@@ -56,10 +56,10 @@ public class ArticleServiceImpl implements ArticleService {
 			String kind, String title, String contents) {
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = format1.format(System.currentTimeMillis());
-		int idArticle = articleMapper.getLast();
-		articleMapper.insertArticle(idArticle + 1, idContest, date, writer_nickname, kind,
+		articleMapper.insertArticle(idContest, date, writer_nickname, kind,
 				title, contents);
-		return new Article(idArticle + 1, kind, title, writer_nickname, contents,
+		int articleId = articleMapper.getLast();
+		return new Article(articleId, kind, title, writer_nickname, contents,
 				idContest, date);
 	}
 	

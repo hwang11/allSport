@@ -15,11 +15,6 @@
 		SELECT * FROM article WHERE idArticle = #{idArticle}
 	</select>
 
-	<select id="getLast" resultType="java.lang.Integer">
-		SELECT MAX(idArticle) FROM
-		article
-	</select>
-
 	<select id="getAllArticle"
 		resultType="com.teamSupport.allSport.dto.Article">
 		SELECT * FROM article ORDER BY idArticle DESC LIMIT
@@ -70,7 +65,7 @@
 	</select>
 
 	<insert id="insertArticle">
-		INSERT INTO article VALUES(#{idArticle},
+		INSERT INTO article (article_kind,article_title,article_contents,article_writer_nickname,idContest,article_date) VALUES(
 		#{kind}, #{title},
 		#{contents},
 		#{writer_nickname}, #{idContest},
@@ -99,4 +94,9 @@
 	<delete id="deleteByIdArticle">
 		DELETE FROM article WHERE idArticle = #{idArticle}
 	</delete>
+
+	<select id="getLast" resultType="java.lang.Integer">
+		SELECT MAX(idArticle) FROM
+		article
+	</select>
 </mapper>
