@@ -24,9 +24,7 @@ public class PoiRead {
 	static Connection con = null; 
 	static PreparedStatement pstmt; 
 	static String driver = "com.mysql.cj.jdbc.Driver"; 
-	static String url = "jdbc:mysql://database-1.c3k0cig1e40a.ap-northeast-2.rds.amazonaws.com:3306/allsports2?serverTimezone=UTC&autoReconnection=true"; // 연결문자열
-	static String user = "allsports";
-	static String pw = "20200215allsports!";
+
 	static String SQL = "insert into contest values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 	
 	public static void insert(String a[]) {
