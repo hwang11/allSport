@@ -13,8 +13,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ArticleMapper {
+    public int getLast();
 	public Article article(int idArticle);
-	public int getLast();
 	int getCountByOption(int idContest, String date, String writer_nickname,
 			String kind, String title);
     Article findByIdArticle(int idArticle);
@@ -24,7 +24,7 @@ public interface ArticleMapper {
     void updateArticle(int idArticle,int idContest, String kind, String title, String contents);
     void deleteByIdArticle(int idArticle);
     void deleteByIdContest(int idContest);
-    void insertArticle(@Param(value = "idArticle") int idArticle, @Param(value = "idContest") int idContest,
+    void insertArticle(@Param(value = "idContest") int idContest,
                        @Param(value = "date") String date,
                        @Param(value = "writer_nickname") String writer_nickname, @Param(value = "kind") String kind,
                        @Param(value = "title") String title, @Param(value = "contents") String contents);

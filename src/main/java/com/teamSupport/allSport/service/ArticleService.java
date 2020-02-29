@@ -12,7 +12,7 @@ public interface ArticleService {
 			String kind, String title);
 	public Article getArticle(int idArticle);
 	public Article insertArticle(int idContest, String writer_nickname,
-			String kind, String title, String contents);
+								 String kind, String title, String contents);
 	public Article updateArticle(int idArticle,int idContest, String kind,
 			String title, String contents);
 	public Article deleteArticle(int idArticle);

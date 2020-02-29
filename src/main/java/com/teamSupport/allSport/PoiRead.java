@@ -24,9 +24,7 @@ public class PoiRead {
 	static Connection con = null; 
 	static PreparedStatement pstmt; 
 	static String driver = "com.mysql.cj.jdbc.Driver"; 
-	static String url = "jdbc:mysql://127.0.0.1:3306/allsportdb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&autoReconnection=true"; // 연결문자열 
-	static String user = "allsport"; 
-	static String pw = "allsport123";
+
 	static String SQL = "insert into contest values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 	
 	public static void insert(String a[]) {
@@ -64,7 +62,7 @@ public class PoiRead {
 		try {
 			//2~10 12~14 
 			// /Users/hwangseon-a/Downloads/AllSport-master/doc/20190820.xls 상대주소로바꿔야함 
-			fis = new FileInputStream("/Users/hwangseon-a/AllSport-master/doc/20190820.xls"); // Excel file
+			fis = new FileInputStream("/Users/hwangseon-a/allSport/doc/20190820.xls"); // Excel file
 			workbook = WorkbookFactory.create(fis); // Excel 파일을 POI로 읽어옴
 			Sheet sheet = workbook.getSheetAt(0); // 첫번째 Sheet 읽어옴
 			int rowNumS = sheet.getFirstRowNum(); // 첫번째 Row 번호

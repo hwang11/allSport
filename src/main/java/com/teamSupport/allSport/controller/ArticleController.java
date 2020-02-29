@@ -35,8 +35,12 @@ public class ArticleController extends AbstractBaseRestController{
 	}
 
 	@RequestMapping(method = RequestMethod.POST) ///ok
-	public @ResponseBody ResponseMessage insertArticle(int idContest, String writer_nickname, 
-			String kind, String title, String contents) {
+	public @ResponseBody ResponseMessage insertArticle(
+			@RequestParam(value = "idContest") int idContest,
+			@RequestParam(value = "writer_nickname") String writer_nickname,
+			@RequestParam(value = "kind") String kind,
+			@RequestParam(value = "title") String title,
+			@RequestParam(value = "contents") String contents) {
 		ResponseMessage message = new ResponseMessage(HttpStatus.OK);
 	    message.add("result", articleService.insertArticle(idContest, writer_nickname, kind, 
 				title, contents));
