@@ -1,7 +1,5 @@
 package com.teamSupport.allSport.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamSupport.allSport.dao.ContestMapper;
-import com.teamSupport.allSport.dto.Contest;
 import com.teamSupport.allSport.dto.ResponseMessage;
 import com.teamSupport.allSport.service.ContestService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class ContestController extends AbstractBaseRestController{

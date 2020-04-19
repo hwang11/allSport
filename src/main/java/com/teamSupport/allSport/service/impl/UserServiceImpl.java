@@ -6,8 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamSupport.allSport.dao.UserMapper;
-import com.teamSupport.allSport.dto.Meeting;
+import com.teamSupport.allSport.mapper.UserMapper;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
 import com.teamSupport.allSport.dto.User;

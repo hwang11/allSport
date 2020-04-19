@@ -1,6 +1,4 @@
-package com.teamSupport.allSport.dao;
-
-import org.apache.ibatis.annotations.Param;
+package com.teamSupport.allSport.mapper;
 
 import com.teamSupport.allSport.dto.Meeting;
 

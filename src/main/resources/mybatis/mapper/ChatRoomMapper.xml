@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.dao.ChatRoomMapper">
+<mapper namespace="com.teamSupport.allSport.mapper.ChatRoomMapper">
     <select id="findAllRoomByUserKey" resultType="com.teamSupport.allSport.dto.ChatRoom">
         SELECT * FROM chat_room WHERE user_key = #{user_key} 
         ORDER BY idArticle DESC LIMIT #{pageStart}, #{perPageNum};

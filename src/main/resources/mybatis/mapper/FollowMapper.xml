@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.dao.FollowMapper">
+<mapper namespace="com.teamSupport.allSport.mapper.FollowMapper">
 
     <select id="getFollowing" resultType="java.lang.String">
         SELECT following_nickname FROM follow WHERE follower_nickname = #{follower_nickname}

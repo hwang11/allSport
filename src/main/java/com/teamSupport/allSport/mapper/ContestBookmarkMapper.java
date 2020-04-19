@@ -1,12 +1,10 @@
-package com.teamSupport.allSport.dao;
+package com.teamSupport.allSport.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.teamSupport.allSport.dto.Article;
 import com.teamSupport.allSport.dto.ContestBookmark;
 
 @Mapper

@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamSupport.allSport.dao.UserMapper;
+import com.teamSupport.allSport.mapper.UserMapper;
 import com.teamSupport.allSport.dto.ResponseMessage;
-import com.teamSupport.allSport.dto.User;
 import com.teamSupport.allSport.service.UserService;
 import com.teamSupport.allSport.service.impl.KakaoAPI;
 

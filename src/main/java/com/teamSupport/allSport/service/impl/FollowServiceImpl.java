@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamSupport.allSport.dao.FollowMapper;
+import com.teamSupport.allSport.mapper.FollowMapper;
 import com.teamSupport.allSport.dto.Follow;
 import com.teamSupport.allSport.service.FollowService;
 

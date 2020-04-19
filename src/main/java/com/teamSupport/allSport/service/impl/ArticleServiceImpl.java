@@ -3,15 +3,11 @@ package com.teamSupport.allSport.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamSupport.allSport.dao.ArticleMapper;
+import com.teamSupport.allSport.mapper.ArticleMapper;
 import com.teamSupport.allSport.dto.Article;
-import com.teamSupport.allSport.dto.Criteria;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;
 import com.teamSupport.allSport.service.ArticleService;

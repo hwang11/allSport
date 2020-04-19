@@ -1,7 +1,6 @@
 package com.teamSupport.allSport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,17 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamSupport.allSport.dao.MeetingMapper;
-import com.teamSupport.allSport.dto.ChatRoom;
-import com.teamSupport.allSport.dto.Meeting;
 import com.teamSupport.allSport.dto.ResponseMessage;
 import com.teamSupport.allSport.service.MeetingService;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @RestController
 public class MeetingController extends AbstractBaseRestController{

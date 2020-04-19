@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.teamSupport.allSport.dao.MeetingMapper">
+<mapper namespace="com.teamSupport.allSport.mapper.MeetingMapper">
 
 	<select id="getAllMeeting"
 		resultType="com.teamSupport.allSport.dto.Meeting">

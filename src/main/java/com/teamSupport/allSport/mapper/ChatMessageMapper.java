@@ -1,4 +1,4 @@
-package com.teamSupport.allSport.dao;
+package com.teamSupport.allSport.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

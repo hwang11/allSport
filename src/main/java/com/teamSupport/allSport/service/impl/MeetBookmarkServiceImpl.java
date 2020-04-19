@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamSupport.allSport.dao.MeetBookmarkMapper;
-import com.teamSupport.allSport.dto.Criteria;
+import com.teamSupport.allSport.mapper.MeetBookmarkMapper;
 import com.teamSupport.allSport.dto.MeetBookmark;
 import com.teamSupport.allSport.dto.PageMaker;
 import com.teamSupport.allSport.dto.PagingResult;

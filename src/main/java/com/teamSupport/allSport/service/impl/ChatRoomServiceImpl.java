@@ -2,12 +2,10 @@ package com.teamSupport.allSport.service.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teamSupport.allSport.dao.ChatRoomMapper;
-import com.teamSupport.allSport.dto.Article;
+import com.teamSupport.allSport.mapper.ChatRoomMapper;
 import com.teamSupport.allSport.dto.ChatRoom;
 import com.teamSupport.allSport.dto.Criteria;
 import com.teamSupport.allSport.dto.PageMaker;

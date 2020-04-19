@@ -5,11 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.teamSupport.allSport.dao.ArticleMapper;
-import com.teamSupport.allSport.dto.Article;
-import com.teamSupport.allSport.dto.Criteria;
-import com.teamSupport.allSport.dto.PageMaker;
-import com.teamSupport.allSport.dto.PagingResult;
 import com.teamSupport.allSport.dto.ResponseMessage;
 import com.teamSupport.allSport.service.ArticleService;
 

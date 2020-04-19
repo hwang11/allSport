@@ -5,15 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teamSupport.allSport.dao.FollowMapper;
-import com.teamSupport.allSport.dto.Follow;
 import com.teamSupport.allSport.dto.ResponseMessage;
 import com.teamSupport.allSport.service.FollowService;
-import java.util.List;
 
 @RestController
 public class FollowController extends AbstractBaseRestController{
