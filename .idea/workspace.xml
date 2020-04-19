@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5f7f170-bc25-4eb8-b60c-cb6fa514390c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/teamSupport/allSport/dto/Contest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teamSupport/allSport/dto/Contest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +158,7 @@
       <workItem from="1584451313091" duration="182000" />
       <workItem from="1584451754673" duration="8000" />
       <workItem from="1584451952031" duration="137000" />
-      <workItem from="1587267230780" duration="658000" />
+      <workItem from="1587267230780" duration="1022000" />
     </task>
     <servers />
   </component>
