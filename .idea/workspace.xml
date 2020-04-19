@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5f7f170-bc25-4eb8-b60c-cb6fa514390c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/teamSupport/allSport/PoiRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/teamSupport/allSport/PoiRead.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +156,7 @@
       <workItem from="1584451313091" duration="182000" />
       <workItem from="1584451754673" duration="8000" />
       <workItem from="1584451952031" duration="137000" />
+      <workItem from="1587267230780" duration="504000" />
     </task>
     <servers />
   </component>
