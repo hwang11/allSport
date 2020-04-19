@@ -11,12 +11,13 @@ import java.util.List;
 @Repository
 public
 interface ContestMapper {
+    void insert(Contest contest);
+    Contest getContest(int idContest);
     List<Contest> findAllContest(int pageStart, int perPageNum);
+    List<Contest> findByPeriod(String startDate, String endDate, int pageStart, int perPageNum);
+    List<Contest> findByLocal(String local, int pageStart, int perPageNum);
+    List<Contest> findByTitle(String title, int pageStart, int perPageNum);
     int getLast();
     int getCountByOption(String startDate, String endDate, String kind, String target,
     		String place, String title, String country, String SOCName);
-    Contest getContest(int idContest);
-    void insert(Contest contest);
-    List<Contest> findByOption(String startDate, String endDate, String kind, String target,
-    		String place, String title, String country, String SOCName, int pageStart, int perPageNum);
 }

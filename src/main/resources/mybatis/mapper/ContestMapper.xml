@@ -11,65 +11,6 @@
 		resultType="com.teamSupport.allSport.dto.Contest">
 		SELECT * FROM contest WHERE idContest = #{idContest}
 	</select>
-	<select id="findByOption" parameterType="java.lang.String"
-		resultType="com.teamSupport.allSport.dto.Contest">
-		SELECT * FROM contest WHERE
-		<choose>
-			<when test="!startDate.equals('aa')">
-				contest_startDate >= #{startDate} AND #{endDate} >=
-				contest_endDate
-			</when>
-			<when test="!kind.equals('aa')">
-				contest_kind = #{kind}
-			</when>
-			<when test="!target.equals('aa')">
-				contest_target = #{target}
-			</when>
-			<when test="!place.eauals('aa')">
-				contest_place = #{place}
-			</when>
-			<when test="!title.equals('aa')">
-				contest_title = #{title}
-			</when>
-			<when test="!country.equals('aa')">
-				contest_country = #{country}
-			</when>
-			<otherwise>
-				contest_SOCName = #{SOCName}
-			</otherwise>
-		</choose>
-		ORDER BY idContest
-		<if test="perPageNum gt 0">DESC LIMIT #{pageStart}, #{perPageNum}</if>	
-	</select>
-	<select id="getLast" resultType="java.lang.Integer">
-		SELECT MAX(idContest) FROM contest;
-	</select>
-	<select id="getCountByOption" resultType="java.lang.Integer">
-		SELECT count(*)
-		FROM contest WHERE
-		<choose>
-			<when test="!startDate.equals('aa')">
-				contest_startDate >= #{startDate} AND #{endDate} >=
-				contest_endDate
-			</when>
-			<when test="!kind.equals('aa')">
-				contest_kind = #{kind}
-			</when>
-			<when test="!target.equals('aa')">
-				contest_target = #{target}
-			</when>
-			<when test="!place.eauals('aa')">
-				contest_place = #{place}
-			</when>
-			<when test="!title.equals('aa')">
-				contest_title = #{title}
-			</when>
-			<when test="!country.equals('aa')">
-				contest_country = #{country}
-			</when>
-			<otherwise>
-				contest_SOCName = #{SOCName}
-			</otherwise>
-		</choose>	
-	</select>
+
+
 </mapper>
